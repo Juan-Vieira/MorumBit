@@ -2,44 +2,42 @@ CREATE DATABASE morumbyte;
 USE morumbyte;
 
 CREATE TABLE usuario (
-idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-username VARCHAR(50) UNIQUE,
-dtNascimento DATE,
-email VARCHAR(50) UNIQUE,
-senha CHAR(11)
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    dtNascimento DATE NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    senha CHAR(11) NOT NULL
 );
 
 CREATE TABLE perguntas_quiz (
-idPerguntas INT PRIMARY KEY,
-enunciado VARCHAR(200),
-fkUsuario INT,
-CONSTRAINT fkUsuarioPergunta FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario)
+    idPerguntas INT PRIMARY KEY AUTO_INCREMENT,
+    enunciado VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE alternativas_quiz (
-idAlternativas INT PRIMARY KEY,
-enunciado VARCHAR(100),
-correta BOOLEAN,
-fkPerguntas INT,
-CONSTRAINT fkPerguntasAlternativas FOREIGN KEY (fkPerguntas) REFERENCES perguntas_quiz (idPerguntas)
+    idAlternativas INT PRIMARY KEY AUTO_INCREMENT ,
+    alternativa VARCHAR(100) NOT NULL,
+    correta BOOLEAN NOT NULL,
+    fkPerguntas INT NOT NULL,
+    CONSTRAINT fkPerguntaAlternativa FOREIGN KEY (fkPerguntas) REFERENCES perguntas_quiz(idPerguntas)
 );
 
-CREATE TABLE resposta_quiz (
-idRespostas INT PRIMARY KEY,
-correta BOOLEAN,
-fkUsuario INT,
-fkPerguntas INT,
-fkAlternativas INT, 
-CONSTRAINT fkRespostaQuiz 
-FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario),
-FOREIGN KEY (fkPerguntas) REFERENCES perguntas_quiz (idPerguntas),
-FOREIGN KEY (fkAlternativas) REFERENCES alternativas_quiz (idAlternativas)
+CREATE TABLE tentativa_quiz (
+    idTentativas INT PRIMARY KEY AUTO_INCREMENT,
+    acertos INT NOT NULL,
+    erros INT NOT NULL,
+    fkUsuario INT NOT NULL,
+    CONSTRAINT fkUsuarioTentativa FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
 
-CREATE TABLE resultados_quiz (
-idResultados INT PRIMARY KEY,
-acertos INT,
-erros INT,
-fkUsuario INT,
-CONSTRAINT fkUsuarioResultado FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario)
+CREATE TABLE respostas_usuario (
+    fkTentativas INT NOT NULL,
+    fkAlternativas INT NOT NULL,
+    fkPerguntas INT NOT NULL,
+    data_resposta DATETIME NOT NULL,
+    CONSTRAINT pkTentativaPerguntaAlternativas PRIMARY KEY (fkTentativas, fkPerguntas, fkAlternativas),
+    CONSTRAINT fkTentativaPerguntaAlternativa
+    FOREIGN KEY (fkTentativas) REFERENCES tentativa_quiz(idTentativas),
+    FOREIGN KEY (fkAlternativas) REFERENCES alternativas_quiz(idAlternativas),
+    FOREIGN KEY (fkPerguntas) REFERENCES perguntas_quiz(idPerguntas)
 );
