@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body {
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
     margin: 0;
     padding: 0;
 }
@@ -12,7 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100px;
+    height: 80px;
 }
 
 .navbar_geral .nav_red {
@@ -39,7 +41,7 @@ body {
 
 .nav_black img {
     width: 200px;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 .nav_black .botoes_nav {
@@ -57,11 +59,132 @@ body {
     font-size: 20px;
 }
 
+.nav_black .botoes_nav .login_nav {
+    color: #BC0909;
+}
+
 /* Conteúdo */
 .container_login {
-    /* background-image: url(assets/img/fundo_login.png); */
+    background-image: url(../assets/img/fundo_login2.png);
     width: 100%;
-    height: 595px;
-    background-color: #686868;
+    height: 615px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.container_login .saudacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 600px;
+    height: 500px;
+    color: white;
+}
+
+.container_login .saudacao #titulo_saudacao{
+    font-size: 70px;
+    font-family: "Fira Sans";
+    font-weight: 700;
     
+}
+
+.container_login .saudacao #txt_saudacao{
+    font-size: 27px;
+    font-family: "Open sans";
+    font-weight: 350;
+    text-align: justify;
+}
+
+.container_login .card_login {
+    background-color: #ffffff17;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 450px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.container_login .card_login #titulo_card {
+    font-size: 40px;
+    font-family: "Fira Sans";
+    font-weight: 600;
+    text-align: center;
+    color: #BC0909;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.container_login .card_login .inputs_login_cadastro {
+    background-color: #ffffff64;
+    width: 350px;
+    height: 40px;
+    text-align: center;
+    align-self: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.card_login .inputs_login_cadastro input{
+    height: 40px;
+    width: 280px;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: transparent;
+    color: #121212;
+    font-size: 17px
+}
+
+.card_login .inputs_login_cadastro input:focus{
+    outline: none;
+    border: none;
+}
+
+.card_login .inputs_login_cadastro img{
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.card_login #txt_email, #txt_senha{
+    color: #FFFFFF;
+    font-family: "Open Sans";
+    margin-left: 80px;
+    font-weight: 500;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.card_login #txt_cadastreSe {
+    font-family: "Open Sans";
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.card_login #txt_cadastreSe a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.card_login #btn_login {
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    align-self: center;
+    margin-top: 40px;
+    background-color: #BC0909;
+    color: #FFFFFF;
 }

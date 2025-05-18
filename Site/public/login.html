@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="style/login.css">
     <title>login</title>
 </head>
 <body>
@@ -20,10 +20,10 @@
 
             <div class="botoes_nav">
 
-                <a href="" class="home" id="cor">Home</a>
-                <a href="" class="clube" id="nulo">Clube</a>
-                <a href="" class="sobre mim" id="nulo">Sobre mim</a>
-                <a href="" class="login" id="nulo">Login</a>
+                <a href="" class="home_nav">Home</a>
+                <a href="" class="clube_nav">Clube</a>
+                <a href="" class="sobre_mim_nav">Sobre mim</a>
+                <a href="" class="login_nav">Login</a>
                 
             </div>
 
@@ -35,9 +35,36 @@
     <!-- Conteúdo -->
     <div class="container_login">
 
-        
+        <div class="saudacao">
 
+            <p id="titulo_saudacao">Seja Bem-Vindo!</p>
+    
+            <p id="txt_saudacao">Bem-vindo ao meu espaço dedicado ao São Paulo Futebol Clube! Aqui você encontrará tudo sobre a história, os títulos, os ídolos e a paixão que move milhões de torcedores. O São Paulo FC não é apenas um clube: é símbolo de tradição, conquistas e orgulho tricolor.</p>
 
+        </div>
+
+        <!-- Card Login -->
+        <div class="card_login">
+
+            <p id="titulo_card">Login</p>
+
+            <p id="txt_email">E-mail</p>
+            <div class="inputs_login_cadastro">
+                <img src="assets/icons/email.png">
+                <input type="text" id="input_email">
+            </div>
+
+            <p id="txt_senha">Senha</p>
+            <div class="inputs_login_cadastro">
+                <img src="assets/icons/senha.png">
+                <input type="password" id="input_senha">
+            </div>
+
+            <p id="txt_cadastreSe">Não possui conta? <a href="">Cadastre-se</a></p>
+
+            <button id="btn_login" onclick="login()">Login</button>
+
+        </div>
 
     </div>
 
