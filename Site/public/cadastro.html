@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/cadastro.css">
+    <title>login</title>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <div class="navbar_geral">
+        
+        <div class="nav_red"></div>
+        <div class="nav_white"></div>
+
+        <div class="nav_black">
+
+            <img src="assets/icons/logotipo.png">
+
+            <div class="botoes_nav">
+
+                <a href="" class="home_nav">Home</a>
+                <a href="" class="clube_nav">Clube</a>
+                <a href="" class="sobre_mim_nav">Sobre mim</a>
+                <a href="" class="login_nav">Login</a>
+                
+            </div>
+
+        </div>
+        
+    </div>
+
+    
+    <!-- Conteúdo -->
+    <div class="container_cadastro">
+
+        <div class="saudacao">
+
+            <p id="titulo_saudacao">Seja Bem-Vindo!</p>
+    
+            <p id="txt_saudacao">Bem-vindo ao meu espaço dedicado ao São Paulo Futebol Clube! Aqui você encontrará tudo sobre a história, os títulos, os ídolos e a paixão que move milhões de torcedores. O São Paulo FC não é apenas um clube: é símbolo de tradição, conquistas e orgulho tricolor.</p>
+
+        </div>
+
+        <!-- Card Login -->
+        <div class="card_cadastro">
+
+            <p id="titulo_card">Cadastre-se</p>
+
+            <p id="txt_email">Username</p>
+            <div class="inputs_login_cadastro">
+                <img src="assets/icons/username.png">
+                <input type="text" id="input_username">
+            </div>
+
+            <p id="txt_email">Data de Nascimento</p>
+            <div class="inputs_login_cadastro">
+                <img src="assets/icons/data_nasc.png">
+                <input type="date" id="input_dt_nascimento">
+            </div>
+            
+            <p id="txt_email">E-mail</p>
+            <div class="inputs_login_cadastro">
+                <img src="assets/icons/email.png">
+                <input type="text" id="input_email">
+            </div>
+
+            <p id="txt_senha">Senha</p>
+            <div class="inputs_login_cadastro">
+                <img src="assets/icons/senha.png">
+                <input type="password" id="input_senha">
+            </div>
+
+            <p id="txt_email">Confirmação de senha</p>
+            <div class="inputs_login_cadastro">
+                <img src="assets/icons/senha.png">
+                <input type="text" id="input_senha_confirm">
+            </div>
+
+            <button id="btn_cadastro" onclick="cadastro()">Cadastro</button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    function cadastro() {
+        window.location.href = 'login.html'
+
+    }
+
+
+</script>
