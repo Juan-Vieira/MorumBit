@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/cadastro.css">
     <title>login</title>
 </head>
+
 <body>
-    
+
     <!-- Navbar -->
     <div class="navbar_geral">
-        
+
         <div class="nav_red"></div>
         <div class="nav_white"></div>
 
@@ -24,22 +26,24 @@
                 <a href="" class="clube_nav">Clube</a>
                 <a href="" class="sobre_mim_nav">Sobre mim</a>
                 <a href="" class="login_nav">Login</a>
-                
+
             </div>
 
         </div>
-        
+
     </div>
 
-    
+
     <!-- Conteúdo -->
     <div class="container_cadastro">
 
         <div class="saudacao">
 
             <p id="titulo_saudacao">Seja Bem-Vindo!</p>
-    
-            <p id="txt_saudacao">Bem-vindo ao meu espaço dedicado ao São Paulo Futebol Clube! Aqui você encontrará tudo sobre a história, os títulos, os ídolos e a paixão que move milhões de torcedores. O São Paulo FC não é apenas um clube: é símbolo de tradição, conquistas e orgulho tricolor.</p>
+
+            <p id="txt_saudacao">Bem-vindo ao meu espaço dedicado ao São Paulo Futebol Clube! Aqui você encontrará tudo
+                sobre a história, os títulos, os ídolos e a paixão que move milhões de torcedores. O São Paulo FC não é
+                apenas um clube: é símbolo de tradição, conquistas e orgulho tricolor.</p>
 
         </div>
 
@@ -59,7 +63,7 @@
                 <img src="assets/icons/data_nasc.png">
                 <input type="date" id="input_dt_nascimento">
             </div>
-            
+
             <p id="txt_email">E-mail</p>
             <div class="inputs_login_cadastro">
                 <img src="assets/icons/email.png">
@@ -75,22 +79,43 @@
             <p id="txt_email">Confirmação de senha</p>
             <div class="inputs_login_cadastro">
                 <img src="assets/icons/senha.png">
-                <input type="text" id="input_senha_confirm">
+                <input type="password" id="input_senha_confirm">
             </div>
 
-            <button id="btn_cadastro" onclick="cadastro()">Cadastro</button>
+            <button id="btn_cadastro" onclick="cadastrar()">Cadastro</button>
 
         </div>
 
     </div>
 
 </body>
+
 </html>
 
 <script>
 
-    function cadastro() {
-        window.location.href = 'login.html'
+    function cadastrar() {
+
+        var username = input_username.value
+        var dtNasc = input_dt_nascimento.value
+        var email = input_email.value
+        var senha = input_senha.value
+        var confirm_senha = input_senha_confirm.value
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                usernameServer: username,
+                dtNascServer: dtNasc,
+                emailServer: email,
+                senhaServer: senha
+            }),
+        });
+
+        window.location.href = 'index.html'
 
     }
 
