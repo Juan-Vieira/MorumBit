@@ -67,14 +67,14 @@
                     <div class="dados_username">
     
                         <p class="titulo_dado">Username:</p>
-                        <p class="dado">juanzin_gp</p>
+                        <p id="dado_username">juanzin_gp</p>
     
                     </div>
     
                     <div class="dados_dtNasc">
     
                         <p class="titulo_dado">Data de Nascimento:</p>
-                        <p class="dado">14/09/2006</p>
+                        <p id="dado_dtNasc">14/09/2006</p>
     
                     </div>
 
@@ -85,14 +85,14 @@
                     <div class="dados_email">
     
                         <p class="titulo_dado">E-mail:</p>
-                        <p class="dado">juan@gmail.com</p>
+                        <p id="dado_email">juan@gmail.com</p>
     
                     </div>
     
                     <div class="dados_senha">
     
                         <p class="titulo_dado">Senha:</p>
-                        <p class="dado">**********</p>
+                        <p id="dado_senha">**********</p>
     
                     </div>
 
@@ -115,6 +115,21 @@
 </html>
 
 <script>
+
+    dado_username.innerHTML = sessionStorage.NOME_USUARIO
+    dado_dtNasc.innerHTML = sessionStorage.NASC_USUARIO
+    dado_email.innerHTML = sessionStorage.EMAIL_USUARIO
+    dado_senha.innerHTML = sessionStorage.SENHA_USUARIO
+
+
+
+
+
+
+
+
+
+    
 
     function atualizar() {
         

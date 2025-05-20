@@ -209,11 +209,31 @@
     margin-bottom: 10px;
 }
 
-#card_perfil .dado {
+#card_perfil #dado_username {
     font-size: 20px;
     font-family: "Open Sans";
     font-weight: 500;
     color: #121212;
 }
 
+#card_perfil #dado_dtNasc {
+    font-size: 20px;
+    font-family: "Open Sans";
+    font-weight: 500;
+    color: #121212;
+}
+
+#card_perfil #dado_email {
+    font-size: 20px;
+    font-family: "Open Sans";
+    font-weight: 500;
+    color: #121212;
+}
+
+#card_perfil #dado_senha {
+    font-size: 20px;
+    font-family: "Open Sans";
+    font-weight: 500;
+    color: #121212;
+}
 
