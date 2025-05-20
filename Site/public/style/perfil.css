@@ -182,6 +182,12 @@
     padding-bottom: 30px;
 }
 
+#card_perfil #div_inferior button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 #card_perfil #div_inferior #atualizar_dados{
     width: 80px;
     height: 80px;
