@@ -1,13 +1,12 @@
 var usuarioModel = require("../models/usuarioModel");
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
     var username = req.body.usernameServer;
     var dtNasc = req.body.dtNascServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel.cadastrar(username, dtNasc, email, senha)
         .then(
             function (resultado) {
@@ -33,12 +32,13 @@ function autenticar(req, res) {
         .then(
             function (resultadoAutenticar) {
                 console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`);
 
                 if (resultadoAutenticar.length == 1) {
 
                     console.log(resultadoAutenticar);
                     res.json({
+                        idUsuario: resultadoAutenticar[0].idUsuario, 
                         username: resultadoAutenticar[0].username,
                         dtNasc: resultadoAutenticar[0].dtNasc,
                         email: resultadoAutenticar[0].email,
@@ -60,9 +60,34 @@ function autenticar(req, res) {
         );
 }
 
+function atualizar(req, res) {
+
+    var idUsuario = req.body.idUsuarioServer;
+    var username = req.body.usernameServer;
+    var dtNasc = req.body.dtNascServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    usuarioModel.atualizar(idUsuario, username, dtNasc, email, senha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar a alteração dos dados! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 
 module.exports = {
     cadastrar,
-    autenticar
+    autenticar,
+    atualizar
 }

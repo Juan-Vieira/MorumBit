@@ -113,6 +113,14 @@ select * from tentativas_quiz;
 select * from questoes;
 select * from respostas_tentativa;
 
+-- UPDATE
+-- Atualizar Dados
+UPDATE usuario SET username = "Reiz",
+	dtNascimento = "1000-10-10",
+    email = "Reiz@gmail.com",
+    senha = "Reiz123"
+    WHERE idUsuario = 2;
+
 -- SELECTS
 
 -- Número de usuários que respondeu o quiz

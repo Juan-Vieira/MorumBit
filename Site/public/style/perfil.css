@@ -134,9 +134,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 81%;
+    width: 80%;
     height: 695px;
     justify-content: space-evenly;
+
+    position: absolute;
+    left: 300px;
+    z-index: 1;
 }
 
 .conteudo #titulo_perfil {
@@ -237,3 +241,88 @@
     color: #121212;
 }
 
+/* Atualizar dados */
+
+#fundo_escuro {
+    width: 1236px;
+    height: 695px;
+    background-color: #1212126f;
+    backdrop-filter: blur(3px);
+    position: absolute;
+    left: 300px;
+    z-index: 2;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#fundo_escuro #card_update {
+    width: 900px;
+    height: 650px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#card_update #cabecalho{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cabecalho button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#cabecalho button img{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+#cabecalho #titulo_update{
+    font-size: 50px;
+    font-family: "Fira Sans";
+    font-weight: 500;
+    margin-left: 270px;
+}
+
+#card_update .titulo_dado_update {
+    font-size: 20px;
+    font-family: "Open Sans";
+    align-self: flex-start;
+    margin-left: 200px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+#card_update input {
+    width: 500px;
+    height: 45px;
+    border-radius: 30px;
+    border: solid 3.2px #121212;
+    padding-inline: 20px;
+    font-size: 17px;
+    font-family: "Open Sans";
+    margin-bottom: 32px;
+}
+
+#card_update #btn_update {
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    background-color: #BC0909;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="style/perfil.css">
 </head>
+
 <body>
 
     <div class="container">
@@ -54,6 +56,39 @@
 
         </div>
 
+        <!-- Card Atualizar Dados -->
+
+        <div id="fundo_escuro">
+
+            <div id="card_update">
+
+                <div id="cabecalho">
+
+                    <p id="titulo_update">Atualizar Dados</p>
+                    <button onclick="fechar()">
+                        <img src="assets/icons/close.png">
+                    </button>
+
+                </div>
+
+                <p class="titulo_dado_update">Username</p>
+                <input type="text" id="input_username">
+
+                <p class="titulo_dado_update">Data de Nascimento</p>
+                <input type="date" id="input_dtNasc">
+
+                <p class="titulo_dado_update">E-mail</p>
+                <input type="text" id="input_email">
+
+                <p class="titulo_dado_update">Senha</p>
+                <input type="password" id="input_senha">
+
+                <button onclick="update()" id="btn_update">Atualizar</button>
+
+            </div>
+
+        </div>
+
         <!-- Conteúdo -->
         <div class="conteudo">
 
@@ -65,17 +100,17 @@
                 <div id="div_superior">
 
                     <div class="dados_username">
-    
+
                         <p class="titulo_dado">Username:</p>
                         <p id="dado_username">juanzin_gp</p>
-    
+
                     </div>
-    
+
                     <div class="dados_dtNasc">
-    
+
                         <p class="titulo_dado">Data de Nascimento:</p>
                         <p id="dado_dtNasc">14/09/2006</p>
-    
+
                     </div>
 
                 </div>
@@ -83,23 +118,23 @@
                 <div id="div_central">
 
                     <div class="dados_email">
-    
+
                         <p class="titulo_dado">E-mail:</p>
                         <p id="dado_email">juan@gmail.com</p>
-    
+
                     </div>
-    
+
                     <div class="dados_senha">
-    
+
                         <p class="titulo_dado">Senha:</p>
                         <p id="dado_senha">**********</p>
-    
+
                     </div>
 
                 </div>
 
                 <div id="div_inferior">
-                    <button onclick="atualizar()">
+                    <button onclick="abrir_atualizar()">
                         <img id="atualizar_dados" src="assets/icons/update.png">
                     </button>
                 </div>
@@ -110,8 +145,9 @@
         </div>
 
     </div>
-    
+
 </body>
+
 </html>
 
 <script>
@@ -122,17 +158,67 @@
     dado_senha.innerHTML = sessionStorage.SENHA_USUARIO
 
 
+    // Botão que atualiza os dados do usuário
+    function update() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var username = input_username.value;
+        var dtNasc = input_dtNasc.value;
+        var email = input_email.value;
+        var senha = input_senha.value;
 
+        fetch("/usuarios/atualizar", {
+            method: "PUT", 
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                usernameServer: username,
+                dtNascServer: dtNasc,
+                emailServer: email,
+                senhaServer: senha
+            }),
+        })
+            .then(res => {
+                if (res.ok) {
+                    alert("Dados atualizados com sucesso!");
+                    // atualize os campos visuais, se quiser
+                    dado_username.innerHTML = username;
+                    dado_dtNasc.innerHTML = dtNasc;
+                    dado_email.innerHTML = email;
+                    dado_senha.innerHTML = senha;
 
+                    // Atualiza a sessionStorage
+                    sessionStorage.NOME_USUARIO = username;
+                    sessionStorage.NASC_USUARIO = dtNasc;
+                    sessionStorage.EMAIL_USUARIO = email;
+                    sessionStorage.SENHA_USUARIO = senha;
 
+                } else {
+                    return res.text().then(texto => {
+                        throw new Error(texto);
+                    });
+                }
+            })
+            .catch(err => {
+                console.error("Erro ao atualizar:", err);
+                alert("Erro ao atualizar: " + err.message);
+            });
 
+        fundo_escuro.style.display = "none";
+    }
 
+    // Abre o card para atualizar os dados
+    function abrir_atualizar() {
 
+        fundo_escuro.style.display = "flex"
 
-    
+    }
 
-    function atualizar() {
-        
+    function fechar() {
+
+        fundo_escuro.style.display = "none"
+
     }
 
 </script>
