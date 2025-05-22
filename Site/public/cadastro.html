@@ -22,10 +22,10 @@
 
             <div class="botoes_nav">
 
-                <a href="" class="home_nav">Home</a>
+                <a href="home.html" class="home_nav">Home</a>
                 <a href="" class="clube_nav">Clube</a>
                 <a href="" class="sobre_mim_nav">Sobre mim</a>
-                <a href="" class="login_nav">Login</a>
+                <a href="index.html" class="login_nav">Login</a>
 
             </div>
 
@@ -37,11 +37,11 @@
     <!-- Conteúdo -->
     <div class="container_cadastro">
 
-        <div class="alerta_erro">
+        <!-- <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
             </div>
-        </div>
+        </div> -->
 
         <div class="saudacao">
 
@@ -103,7 +103,7 @@
     function cadastrar() {
 
         var username = input_username.value
-        var dtNasc = input_dt_nascimento.value
+        var dtNascimento = input_dt_nascimento.value
         var email = input_email.value
         var senha = input_senha.value
         var confirm_senha = input_senha_confirm.value
@@ -115,11 +115,32 @@
             },
             body: JSON.stringify({
                 usernameServer: username,
-                dtNascServer: dtNasc,
+                dtNascServer: dtNascimento,
                 emailServer: email,
                 senhaServer: senha
             }),
         })
+    //     .then(function (resposta) {
+    //     console.log("resposta: ", resposta);
+
+    //     if (resposta.ok) {
+    //       cardErro.style.display = "block";
+
+    //       mensagem_erro.innerHTML =
+    //         "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+    //       setTimeout(() => {
+    //         window.location = "index.html";
+    //       }, "2000");
+
+    //     } else {
+    //       throw "Houve um erro ao tentar realizar o cadastro!";
+    //     }
+    //   })
+    //   .catch(function (resposta) {
+    //     console.log(`#ERRO: ${resposta}`);
+        
+    //   });
 
         window.location.href = 'index.html'
 

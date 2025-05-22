@@ -22,33 +22,37 @@
 
                 <img id="logotipo" src="assets/icons/logotipo.png">
 
-                <div id="perfil">
+                <div id="botoes_nav">
 
-                    <img src="assets/icons/user.png">
-                    <a href="">Perfil</a>
+                    <div id="perfil">
 
-                </div>
+                        <img class="img_lat" src="assets/icons/user.png">
+                        <a href="perfil.html">Perfil</a>
 
-
-                <div id="quiz">
-
-                    <img src="assets/icons/quiz.png">
-                    <a href="">Quiz</a>
-
-                </div>
+                    </div>
 
 
-                <div id="dash">
+                    <div id="quiz">
 
-                    <img src="assets/icons/dashboard.png">
-                    <a href="">Dashboard</a>
+                        <img class="img_lat" src="assets/icons/quiz.png">
+                        <a href="quiz.html">Quiz</a>
+
+                    </div>
+
+
+                    <div id="dash">
+
+                        <img class="img_lat" src="assets/icons/dashboard.png">
+                        <a href="dashboard.html">Dashboard</a>
+
+                    </div>
 
                 </div>
 
                 <div id="sair">
 
-                    <img src="assets/icons/exit.png">
-                    <a href="">Sair</a>
+                    <img class="img_lat" src="assets/icons/exit.png">
+                    <a href="home.html">Sair</a>
 
                 </div>
 
@@ -157,12 +161,10 @@
     dado_email.innerHTML = sessionStorage.EMAIL_USUARIO
     dado_senha.innerHTML = sessionStorage.SENHA_USUARIO
 
-
-    // Botão que atualiza os dados do usuário
     function update() {
         var idUsuario = sessionStorage.ID_USUARIO;
         var username = input_username.value;
-        var dtNasc = input_dtNasc.value;
+        var dtNascimento = input_dtNasc.value;
         var email = input_email.value;
         var senha = input_senha.value;
 
@@ -174,7 +176,7 @@
             body: JSON.stringify({
                 idUsuarioServer: idUsuario,
                 usernameServer: username,
-                dtNascServer: dtNasc,
+                dtNascServer: dtNascimento,
                 emailServer: email,
                 senhaServer: senha
             }),
@@ -182,15 +184,14 @@
             .then(res => {
                 if (res.ok) {
                     alert("Dados atualizados com sucesso!");
-                    // atualize os campos visuais, se quiser
+
                     dado_username.innerHTML = username;
-                    dado_dtNasc.innerHTML = dtNasc;
+                    dado_dtNasc.innerHTML = dtNascimento;
                     dado_email.innerHTML = email;
                     dado_senha.innerHTML = senha;
 
-                    // Atualiza a sessionStorage
                     sessionStorage.NOME_USUARIO = username;
-                    sessionStorage.NASC_USUARIO = dtNasc;
+                    sessionStorage.NASC_USUARIO = dtNascimento;
                     sessionStorage.EMAIL_USUARIO = email;
                     sessionStorage.SENHA_USUARIO = senha;
 
@@ -208,7 +209,6 @@
         fundo_escuro.style.display = "none";
     }
 
-    // Abre o card para atualizar os dados
     function abrir_atualizar() {
 
         fundo_escuro.style.display = "flex"

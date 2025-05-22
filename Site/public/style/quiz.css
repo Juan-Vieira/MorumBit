@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    
+    width: 100%;
+    height: 695px;
+}
+
+/* Barra lateral */
+#barra_lateral {
+    display: flex;
+    width: 300px;
+    height: 100%;
+}
+
+#barra_lateral #lat_red {
+    width: 20px;
+    height: 100%;
+    background-color: #BC0909;
+}
+
+#barra_lateral #lat_white {
+    width: 20px;
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+#barra_lateral #lat_black {
+    display: flex;
+    flex-direction: column;
+    background-color: #121212;
+    width: 100%;
+    height: 100%;
+    
+}
+
+#lat_black #logotipo {
+    width: 200px;
+    align-self: center;
+    margin-top: 25px;
+    margin-bottom: 80px;
+}
+
+#lat_black .img_lat{
+    width: 35px;
+    height: 35px;
+
+}
+
+#lat_black #botoes_nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 280px;
+}
+
+/* Perfil */
+#lat_black #perfil {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    height: 80px;
+}
+
+#lat_black #perfil a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-weight: 400;
+    font-size: 25px;
+    align-self: center; 
+    margin-left: 30px;
+}
+
+/* Quiz */
+#lat_black #quiz {
+    display: flex;
+    align-items: center;
+    background-color: #BC0909;
+    margin-left: 25px;
+    width: 200px;
+    height: 80px;
+    padding-left: 15px;
+    border-radius: 20px;
+}
+
+#lat_black #quiz a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-weight: 400;
+    font-size: 25px;
+    align-self: center; 
+    margin-left: 30px;
+}
+
+/* Dashboard */
+#lat_black #dash {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    height: 80px;
+
+}
+
+#lat_black #dash a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-weight: 400;
+    font-size: 25px;
+    align-self: center; 
+    margin-left: 30px;
+}
+
+#lat_black #sair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 170px;
+}
+
+#lat_black #sair a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-weight: 500;
+    font-size: 30px;
+    align-self: center; 
+}
+
+#lat_black #sair img {
+    width: 35px;
+    margin-right: 5px;
+}

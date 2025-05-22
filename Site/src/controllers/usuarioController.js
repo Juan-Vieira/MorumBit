@@ -3,11 +3,11 @@ var usuarioModel = require("../models/usuarioModel");
 function cadastrar(req, res) {
 
     var username = req.body.usernameServer;
-    var dtNasc = req.body.dtNascServer;
+    var dtNascimento = req.body.dtNascServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    usuarioModel.cadastrar(username, dtNasc, email, senha)
+    usuarioModel.cadastrar(username, dtNascimento, email, senha)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -40,7 +40,7 @@ function autenticar(req, res) {
                     res.json({
                         idUsuario: resultadoAutenticar[0].idUsuario, 
                         username: resultadoAutenticar[0].username,
-                        dtNasc: resultadoAutenticar[0].dtNasc,
+                        dtNascimento: resultadoAutenticar[0].dtNascimento,
                         email: resultadoAutenticar[0].email,
                         senha: resultadoAutenticar[0].senha
                     });
@@ -64,11 +64,11 @@ function atualizar(req, res) {
 
     var idUsuario = req.body.idUsuarioServer;
     var username = req.body.usernameServer;
-    var dtNasc = req.body.dtNascServer;
+    var dtNascimento = req.body.dtNascServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    usuarioModel.atualizar(idUsuario, username, dtNasc, email, senha)
+    usuarioModel.atualizar(idUsuario, username, dtNascimento, email, senha)
         .then(
             function (resultado) {
                 res.json(resultado);

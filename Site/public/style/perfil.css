@@ -14,6 +14,7 @@
     height: 695px;
 }
 
+/* Barra lateral */
 #barra_lateral {
     display: flex;
     width: 300px;
@@ -48,6 +49,19 @@
     margin-bottom: 80px;
 }
 
+#lat_black .img_lat{
+    width: 35px;
+    height: 35px;
+
+}
+
+#lat_black #botoes_nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 280px;
+}
+
 /* Perfil */
 #lat_black #perfil {
     display: flex;
@@ -75,7 +89,7 @@
     display: flex;
     align-items: center;
     margin-left: 40px;
-    margin-top: 50px;
+    height: 80px;
 }
 
 #lat_black #quiz a {
@@ -93,7 +107,8 @@
     display: flex;
     align-items: center;
     margin-left: 40px;
-    margin-top: 50px;
+    height: 80px;
+
 }
 
 #lat_black #dash a {
@@ -111,7 +126,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 40px;
-    margin-top: 200px;
+    margin-top: 170px;
 }
 
 #lat_black #sair a {

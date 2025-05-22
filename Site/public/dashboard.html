@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Barra lateral -->
+        <div id="barra_lateral">
+
+            <div id="lat_red"></div>
+            <div id="lat_white"></div>
+
+            <div id="lat_black">
+
+                <img id="logotipo" src="assets/icons/logotipo.png">
+
+                <div id="botoes_nav">
+
+                    <div id="perfil">
+
+                        <img class="img_lat" src="assets/icons/user.png">
+                        <a href="perfil.html">Perfil</a>
+
+                    </div>
+
+
+                    <div id="quiz">
+
+                        <img class="img_lat" src="assets/icons/quiz.png">
+                        <a href="quiz.html">Quiz</a>
+
+                    </div>
+
+
+                    <div id="dash">
+
+                        <img class="img_lat" src="assets/icons/dashboard.png">
+                        <a href="dashboard.html">Dashboard</a>
+
+                    </div>
+
+                </div>
+
+                <div id="sair">
+
+                    <img class="img_lat" src="assets/icons/exit.png">
+                    <a href="home.html">Sair</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Conteúdo -->
+        <div id="conteudo">
+
+            <div id="div_superior">
+
+                <div id="card_superior">
+
+                    <p id="txt_dash">Dashboard</p>
+
+                    <div id="media_acertos">
+
+                        <p id="txt_media_acertos">Média de acertos dos usuários no quiz</p>
+                        <p id="qtd_acertos">8</p>
+
+                    </div>
+
+                    <div id="qtd_usuarios">
+
+                        <p id="txt_qtd_usuarios">Nº de usuários que respondeu o quiz</p>
+                        <p id="num_qtd_user">20</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="div_central">
+
+                <div class="grafico">
+
+                    <p class="titulo">Taxa média de acertos dos usuários por questão</p>
+
+                    <canvas id="myChart_barra_horizontal"
+                        style="position: relative; width: 80px; height: 25px; margin-inline: 50px; margin-top: 10px;"></canvas>
+
+                </div>
+
+                <div class="card_acerto_erro">
+
+                    <p class="titulo">+Acertos</p>
+                    <p class="questao">
+                        Questão
+                        <span class="num_questao">1</span>
+                        -
+                        <span class="porcentagem_qtd">87%</span>
+                    </p>
+                    <p class="txt">aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div id="div_inferior">
+
+                <div class="grafico">
+
+                    <p class="titulo">Desempenho dos 10 últimos usuários</p>
+
+                    <canvas id="myChart_barra"
+                        style="position: relative; width: 80px; height: 25px; margin-inline: 50px; margin-top: 10px;"></canvas>
+
+                </div>
+
+                <div class="card_acerto_erro">
+
+                    <p class="titulo">+Erros</p>
+                    <p class="questao">
+                        Questão
+                        <span class="num_questao">3</span>
+                        -
+                        <span class="porcentagem_qtd">8%</span>
+                    </p>
+                    <p class="txt">aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+    // GRÁFICOS
+
+    // DESEMPENHO DOS USUÁRIOS
+
+    const usuarios = [
+        'Juan',
+        'Mateus',
+        'Ayane',
+        'Lucas',
+        'Euclides',
+        'Matheus',
+        'Juan',
+        'Mateus',
+        'Ayane',
+        'Rogério'
+    ];
+
+    const acertos = [10, 5, 3, 6, 8, 9, 2, 5, 8, 10];
+
+    // MÉDIA DE ACERTOS EM CADA QUESTÃO
+
+    const quests = [
+        '10',
+        '9',
+        '8',
+        '7',
+        '6',
+        '5',
+        '4',
+        '3',
+        '2',
+        '1',
+    ];
+
+    const porcent = [20, 10, 60, 40, 80, 80, 30, 100, 40, 60]
+
+
+    // Configurações
+    
+    const data_barra_horizontal = {
+        labels: quests,
+        datasets: [
+            {
+                label: 'Acertos',
+                backgroundColor: '#BC0909',
+                borderColor: '#FFFFFF',
+                data: porcent,
+            },
+        ]
+    };
+
+    const data_barra = {
+        labels: usuarios,
+        datasets: [
+            {
+                label: 'Usuários',
+                backgroundColor: '#BC0909',
+                borderColor: '#FFFFFF',
+                data: acertos,
+            },
+        ]
+    };
+
+    const config_barra_horizontal = {
+        type: 'bar',
+        data: data_barra_horizontal,
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    grid: {
+                        color: '#4a4848'
+                    },
+                    ticks: {
+                        color: '#b4b0b0'
+                    }
+                },
+                y: {
+                    grid: {
+                        color: ''
+                    },
+                    ticks: {
+                        color: '#b4b0b0'
+                    }
+                }
+            }
+        }
+    };
+
+    const config_barra = {
+        type: 'bar',
+        data: data_barra,
+        options: {
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#b4b0b0'
+                    }
+                },
+                y: {
+                    grid: {
+                        color: '#4a4848'
+                    },
+                    ticks: {
+                        color: '#b4b0b0'
+                    }
+                }
+            }
+        }
+    };
+
+    const myChart_barra_horizontal = new Chart(
+        document.getElementById('myChart_barra_horizontal'),
+        config_barra_horizontal
+    );
+
+    const myChart_barra = new Chart(
+        document.getElementById('myChart_barra'),
+        config_barra
+    );
+
+</script>

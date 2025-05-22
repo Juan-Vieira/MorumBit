@@ -4,9 +4,9 @@ use morumbyte;
 -- Tabela com os dados do usuário
 CREATE TABLE usuario (
     idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(20) NOT NULL UNIQUE,
     dtNascimento DATE,
-    email VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(30) NOT NULL UNIQUE,
     senha VARCHAR(11) NOT NULL
 );
 
@@ -35,11 +35,11 @@ CREATE TABLE respostas_tentativa (
 );
 
 -- Exemplos de insert
-INSERT INTO usuario (username, dtNascimento, email, senha) VALUES 
-	('joao silva', '1999-10-02', 'joao@email.com', 'ASHSEGURO01'),
-    ('juan vieira', '2000-05-10', 'juan@email.com', '$Hsfsfsfs02'),
-    ('ayane pereira', '2025-08-15', 'ayane@email.com', 'dcsdvs03'),
-    ('pedro alves', '1800-01-01', 'pedro@email.com', 'URO04');
+INSERT INTO usuario (idUsuario, username, dtNascimento, email, senha) VALUES 
+	(DEFAULT, 'joao silva', '1999-10-02', 'joao@email.com', 'ASHSEGURO01'),
+    (DEFAULT, 'juan vieira', '2000-05-10', 'juan@email.com', '$Hsfsfsfs02'),
+    (DEFAULT, 'ayane pereira', '2025-08-15', 'ayane@email.com', 'dcsdvs03'),
+    (DEFAULT, 'pedro alves', '1800-01-01', 'pedro@email.com', 'URO04');
     
 -- Definindo o número das questões
 INSERT INTO questoes (numero) VALUES 
@@ -113,6 +113,8 @@ select * from tentativas_quiz;
 select * from questoes;
 select * from respostas_tentativa;
 
+truncate table usuario;
+
 -- UPDATE
 -- Atualizar Dados
 UPDATE usuario SET username = "Reiz",
@@ -122,6 +124,10 @@ UPDATE usuario SET username = "Reiz",
     WHERE idUsuario = 2;
 
 -- SELECTS
+
+-- Login
+
+ SELECT idUsuario, username, dtNascimento, email, senha FROM usuario WHERE email = 'juan@gmail.com' AND senha = 'juan123';
 
 -- Número de usuários que respondeu o quiz
 SELECT count(distinct fkUsuario) from tentativas_quiz;
