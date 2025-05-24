@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/login.css">
+    <script src="js/validacoes.js"></script>
     <title>login</title>
 </head>
+
 <body>
-    
+
     <!-- Navbar -->
     <div class="navbar_geral">
-        
+
         <div class="nav_red"></div>
         <div class="nav_white"></div>
 
@@ -24,22 +27,28 @@
                 <a href="" class="clube_nav">Clube</a>
                 <a href="" class="sobre_mim_nav">Sobre mim</a>
                 <a href="index.html" class="login_nav">Login</a>
-                
+
             </div>
 
         </div>
-        
+
     </div>
 
-    
+
     <!-- Conteúdo -->
     <div class="container_login">
+
+        <div class="card_erro" id="cardErro">
+            <span id="mensagem_erro"></span>
+        </div>
 
         <div class="saudacao">
 
             <p id="titulo_saudacao">Seja Bem-Vindo!</p>
-    
-            <p id="txt_saudacao">Bem-vindo ao meu espaço dedicado ao São Paulo Futebol Clube! Aqui você encontrará tudo sobre a história, os títulos, os ídolos e a paixão que move milhões de torcedores. O São Paulo FC não é apenas um clube: é símbolo de tradição, conquistas e orgulho tricolor.</p>
+
+            <p id="txt_saudacao">Bem-vindo ao meu espaço dedicado ao São Paulo Futebol Clube! Aqui você encontrará tudo
+                sobre a história, os títulos, os ídolos e a paixão que move milhões de torcedores. O São Paulo FC não é
+                apenas um clube: é símbolo de tradição, conquistas e orgulho tricolor.</p>
 
         </div>
 
@@ -69,6 +78,7 @@
     </div>
 
 </body>
+
 </html>
 
 <script>
@@ -78,50 +88,68 @@
         var emailVar = input_email.value;
         var senhaVar = input_senha.value
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+        var msg_erro = validLogin(emailVar, senhaVar)
+
+        if (msg_erro) {
+
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = `${msg_erro}`
+            sumirErro()
+
+        } else {
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+
+                        cardErro.style.display = "block";
+                        mensagem_erro.innerHTML = `Dados preenchidos com sucesso! Acessando o sistema...`
+                        sumirErro()
+
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.NOME_USUARIO = json.username;
+                        sessionStorage.NASC_USUARIO = json.dtNascimento;
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.SENHA_USUARIO = json.senha;
+
+                        setTimeout(function () {
+                            window.location = "perfil.html";
+                        }, 3000);
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML = `Email e/ou senha inválido(s).`
+                    sumirErro()
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.NOME_USUARIO = json.username;
-                    sessionStorage.NASC_USUARIO = json.dtNascimento;
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.SENHA_USUARIO = json.senha;
-
-                    setTimeout(function () {
-                        window.location = "perfil.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-
+        }
 
 
 
