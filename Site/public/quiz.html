@@ -70,7 +70,10 @@
 
                 <p id="titulo_inicial">SEJA BEM VINDO(A)!</p>
 
-                <p id="texto_inicial">A seguir você irá se deparar com um quiz contendo uma variação de perguntas à respeito do maior clube do mundo: <span>São Paulo Futebol Clube</span>. Será que você realmente conhece esse clube? É o que veremos. Quando estiver preparado, clique no botão abaixo “Iniciar Quiz”.</p>
+                <p id="texto_inicial">A seguir você irá se deparar com um quiz contendo uma variação de perguntas à
+                    respeito do maior clube do mundo: <span>São Paulo Futebol Clube</span>. Será que você realmente
+                    conhece esse clube? É o que veremos. Quando estiver preparado, clique no botão abaixo “Iniciar
+                    Quiz”.</p>
 
                 <button id="btnIniciarQuiz" onclick="iniciarQuiz()">Iniciar quiz</button>
 
@@ -94,6 +97,47 @@
 
                     <div id="alternativas">
 
+                        <!-- Alternativa 1 -->
+                        <div class="card_alternativa" id="primeiraOpcao">
+
+                            <p>teste</p>
+
+                        </div>
+
+                        <!-- Alternativa 2 -->
+                        <div class="card_alternativa" id="seegundaOpcao">
+
+                            <p>teste</p>
+
+                        </div>
+
+                        <!-- Alternativa 3 -->
+                        <div class="card_alternativa" id="terceiraOpcao">
+
+                            <p>teste</p>
+
+                        </div>
+
+                        <!-- Alternativa 4 -->
+                        <div class="card_alternativa" id="quartaOpcao">
+
+                            <p>teste</p>
+
+                        </div>
+
+                        <!-- Alternativa 5 -->
+                        <div class="card_alternativa" id="quintaOpcao">
+
+                            <p>teste</p>
+
+                        </div>
+
+                        <!-- Alternativa 6 -->
+                        <div class="card_alternativa" id="sextaOpcao">
+
+                            <p>teste</p>
+
+                        </div>
 
                     </div>
 
@@ -114,9 +158,34 @@
 
             <div id="resultados_quiz">
 
-                
+                <div id="card_resultado">
+
+                    <p id="titulo_resultado">Resultados</p>
+
+                    <div id="acertos">
+
+                        <p id="txt_acertos">Acertos</p>
+
+                        <div id="acertos_questoes">
+
+                            <p id="num_acertos">0</p>
+                            <p>/</p>
+                            <p id="qtd_questoes">0</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <p id="resposta_resultado">É... que pena. Parece que você não conhece tão bem o São Paulo Futebol Clube. Mas não desanime. Realize uma nova tentativa e supere a si mesmo na próxima vez.</p>
+
+                <button onclick="tentarNovamente()" id="btn_tentar_novamente">Tentar Novamente</button>
+
+
             </div>
 
+            <!-- TESTES -->
             <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
                 <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                     <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
@@ -177,9 +246,11 @@
     </div>
 
 </body>
+
 </html>
 
 <script>
+
     const listaDeQuestoes = [
 
         {
@@ -212,12 +283,12 @@
     ]
 
     // variáveis globais    
-    let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
+    var numeroDaQuestaoAtual = 0
+    var pontuacaoFinal = 0
+    var tentativaIncorreta = 0
+    var certas = 0
+    var erradas = 0
+    var quantidadeDeQuestoes = listaDeQuestoes.length
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -225,9 +296,20 @@
         document.getElementById('jogo').style.display = "none"
     }
 
-    function iniciarQuiz () {
+    function iniciarQuiz() {
         document.getElementById('tela_inicial').style.display = "none"
         document.getElementById('questoes').style.display = "flex"
+        document.getElementById('resultados_quiz').style.display = "none"
+    }
+
+    function proximaPergunta() {
+        document.getElementById('tela_inicial').style.display = "none"
+        document.getElementById('questoes').style.display = "none"
+        document.getElementById('resultados_quiz').style.display = "flex"
+    }
+
+    function tentarNovamente() {
+        window.location.reload()
     }
 
     // function iniciarQuiz() {
@@ -383,14 +465,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true

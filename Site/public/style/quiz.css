@@ -9,7 +9,7 @@
 
 .container {
     display: flex;
-    
+
     width: 100%;
     height: 695px;
 }
@@ -39,7 +39,7 @@
     background-color: #121212;
     width: 100%;
     height: 100%;
-    
+
 }
 
 #lat_black #logotipo {
@@ -49,7 +49,7 @@
     margin-bottom: 80px;
 }
 
-#lat_black .img_lat{
+#lat_black .img_lat {
     width: 35px;
     height: 35px;
 
@@ -76,7 +76,7 @@
     font-family: "Fira Sans";
     font-weight: 400;
     font-size: 25px;
-    align-self: center; 
+    align-self: center;
     margin-left: 30px;
 }
 
@@ -98,7 +98,7 @@
     font-family: "Fira Sans";
     font-weight: 400;
     font-size: 25px;
-    align-self: center; 
+    align-self: center;
     margin-left: 30px;
 }
 
@@ -117,7 +117,7 @@
     font-family: "Fira Sans";
     font-weight: 400;
     font-size: 25px;
-    align-self: center; 
+    align-self: center;
     margin-left: 30px;
 }
 
@@ -135,7 +135,7 @@
     font-family: "Fira Sans";
     font-weight: 500;
     font-size: 30px;
-    align-self: center; 
+    align-self: center;
 }
 
 #lat_black #sair img {
@@ -163,7 +163,7 @@
     height: 100%;
 }
 
-#tela_inicial #titulo_inicial{
+#tela_inicial #titulo_inicial {
     font-family: "Fira Sans";
     font-size: 70px;
     font-weight: 600;
@@ -177,7 +177,7 @@
     text-align: justify;
 }
 
-#tela_inicial #texto_inicial span{
+#tela_inicial #texto_inicial span {
     color: #BC0909;
     font-weight: 700;
 }
@@ -197,7 +197,7 @@
 /* Página das questões */
 
 #questoes {
-    display: none; 
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
@@ -224,7 +224,7 @@
     font-size: 25px;
     align-self: flex-start;
     margin-left: 100px;
-    
+    font-family: "Open Sans";
 }
 
 #questoes #conteudo_principal {
@@ -234,21 +234,13 @@
     height: 470px;
 }
 
-#questoes #alternativas {
-    background-color: #FFFFFF;
-    width: 700px;
-    height: 100%;
-}
-
 #questoes #botoes_laterais {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-around; */
 }
 
-#questoes #botoes_laterais #enunciado_questao{
-    /* background-color: #0762C8; */
+#questoes #botoes_laterais #enunciado_questao {
     width: 350px;
     font-family: "Open Sans";
     font-size: 20px;
@@ -257,7 +249,7 @@
     margin-top: 30px;
 }
 
-#questoes #botoes_laterais #enunciado_questao span{
+#questoes #botoes_laterais #enunciado_questao span {
     font-weight: 700;
 }
 
@@ -275,6 +267,107 @@
     cursor: pointer;
 }
 
+#questoes #conteudo_principal #alternativas {
+    /* background-color: #FFFFFF; */
+    width: 700px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 700px
+}
+
+#conteudo_principal #alternativas .card_alternativa {
+    background-color: #FFFFFF;
+    width: 300px;
+    height: 135px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #121212;
+    font-family: "Open Sans";
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* Resultados do quiz */
+
+#resultados_quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+#resultados_quiz #card_resultado {
+    width: 800px;
+    height: 350px;
+    border-radius: 20px;
+    border: solid 2px #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#resultados_quiz #card_resultado #titulo_resultado {
+    font-family: "Fira Sans";
+    font-size: 50px;
+    font-weight: 500;
+}
+
+#resultados_quiz #card_resultado #acertos {
+    background-color: #BC0909;
+    border: solid 1px #FFFFFF;
+    border-radius: 20px;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#card_resultado #acertos #txt_acertos {
+    font-family: "Fira Sans";
+    font-size: 30px;
+    font-weight: 400;
+}
+
+#card_resultado #acertos #acertos_questoes {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    font-family: "Open Sans";
+    font-weight: 500;
+}
+
+#resultados_quiz #resposta_resultado {
+    font-family: "Open Sans";
+    font-size: 25px;
+    width: 800px;
+    text-align: justify;
+}
+
+#resultados_quiz #btn_tentar_novamente {
+    width: 250px;
+    height: 70px;
+    border: solid 2px #FFFFFF;
+    border-radius: 30px;
+    background-color: #BC0909;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-size: 25px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
 
 
 /* TESTEEEEEE */
@@ -284,7 +377,7 @@
 
 /* Não usar pure white or pure black: https://uxplanet.org/basicdesign-never-use-pure-black-in-typography-36138a3327a6 */
 /* The 4-point grid system: https://medium.com/@sainzkike/controlling-spacing-in-design-systems-multiple-spacing-9bf1afec87f */
-
+/* 
 :root {
     --primary-brand-color: #ED145B;
     --secondary-brand-color: #0762C8;
@@ -355,4 +448,4 @@ button {
 
 .text-new-gray {
     color: var(--new-gray);
-}
+} */
