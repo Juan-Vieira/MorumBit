@@ -14,13 +14,13 @@
     },
     {
         // QUESTÃO 2
-        pergunta: "Quais clubes tiveram integrantes que fundaram o São Paulo FC?",
+        pergunta: "Quais clubes se uniram para fundar o São Paulo FC?",
         alternativas: [
             "Corinthians e Palmeiras",
             "Clube Athlético Paulistano e Associação Atlética das Palmeiras",
             "Santos e Portuguesa",
-            "Ponte Preta e Guarani",
-            "São Caetano e Juventus",
+            "Remo e Retrô",
+            "Volta Redonda e Ajax",
             "Palmeiras e Santos"
         ],
         correta: 1
@@ -68,12 +68,12 @@
         // QUESTÃO 6
         pergunta: "Qual o nome popular do estádio do São Paulo, inaugurado em 1960?",
         alternativas: [
-            "Vila Belmiro",
+            "Estádio Cícero Pompeu de Toledo",
             "Pacaembu",
-            "Canindé",
+            "Morumbi",
             "Arena Corinthians",
             "Maracanã",
-            "Morumbi"
+            "Morumbis"
         ],
         correta: 5
     },
@@ -105,7 +105,7 @@
     },
     {
         // QUESTÃO 9
-        pergunta: "Qual é a estimativa da torcida do São Paulo FC espalhada pelo Brasil e pelo mundo?",
+        pergunta: "Qual é a estimativa de número de torcedores do São Paulo FC espalhada pelo Brasil e pelo mundo?",
         alternativas: [
             "Entre 5 e 7 milhões",
             "Entre 10 e 12 milhões",
