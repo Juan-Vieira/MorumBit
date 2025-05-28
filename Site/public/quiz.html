@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="style/quiz.css">
+    <script src="js/questoes.js"></script>
 </head>
 
 <body onload="onloadEsconder()">
@@ -183,10 +184,7 @@
 
                 <button onclick="tentarNovamente()" id="btn_tentar_novamente">Tentar Novamente</button>
 
-
             </div>
-
-
 
         </div>
 
@@ -198,61 +196,10 @@
 
 <script>
 
-    // Questões do quiz
-    var questoes = [
-        {
-            pergunta: "Em que data foi oficialmente fundado o São Paulo Futebol Clube?",
-            alternativas: [
-                "23 de abril de 1930",
-                "25 de janeiro de 1930",
-                "12 de junho de 1929",
-                "7 de setembro de 1931",
-                "15 de novembro de 1934",
-                "1º de maio de 1935"
-            ],
-            correta: 1
-        },
-        {
-            pergunta: "Quais clubes deram origem ao São Paulo FC, através de seus integrantes dissidentes?",
-            alternativas: [
-                "Corinthians e Portuguesa",
-                "Ponte Preta e Guarani",
-                "Juventus e Nacional",
-                "Clube Athlético Paulistano e Associação Atlética das Palmeiras",
-                "Remo e Retro",
-                "Santa Fé e Paulistano"
-            ],
-            correta: 3
-        },
-        {
-            pergunta: "Por qual motivo o São Paulo FC passou por um período de inatividade entre 1935 e 1936?",
-            alternativas: [
-                "Proibição pela Federação Paulista",
-                "Falta de estádio próprio",
-                "Baixo número de torcedores",
-                "Divergências políticas internas",
-                "Dificuldades financeiras",
-                "Má campanha esportiva"
-            ],
-            correta: 4
-        },
-        {
-            pergunta: "O escudo do São Paulo FC possui iniciais sobre um fundo triangular. Quais são essas iniciais?",
-            alternativas: [
-                "SFC",
-                "SPC",
-                "SPF",
-                "SPFC",
-                "SP",
-                "SPFF"
-            ],
-            correta: 3
-        },
-        
-    ];
+    // Questões estão no arquivo 'questoes.js'
 
     // Variáveis auxiliares
-    var indiceAtual = 0;
+    var indiceAtualQuestao = 0;
     var acertos = 0;
     var alternativaSelecionada = -1;
 
@@ -261,17 +208,125 @@
         document.getElementById('tela_inicial').style.display = "none";
         document.getElementById('resultados_quiz').style.display = "none";
         document.getElementById('questoes').style.display = "flex";
-        mostrarPergunta(indiceAtual);
+        mostrarPergunta(indiceAtualQuestao);
+    }
+
+    // Função para mostrar os dados referentes a questão (Nº da questão, enunciado, alternativas)
+    function mostrarPergunta(i) {
+        document.getElementById('titulo_questao').innerHTML = `Questão ${i+1}`
+        document.getElementById('numQuestao_atual').innerHTML = `${i+1}`;
+        document.getElementById('total_questoes').innerHTML = questoes.length;
+        document.getElementById('enunciado_questao').innerHTML = `${i+1} - ${questoes[i].pergunta}`;
+
+        var alternativa = document.getElementById('alternativas').children;
+
+        for (var j = 0; j < alternativa.length; j++) {
+            alternativa[j].style.backgroundColor = "#FFFFFF";
+            alternativa[j].style.color = "#121212";
+            alternativa[j].innerHTML = `${questoes[i].alternativas[j]}`;
+        }
+
+        alternativaSelecionada = -1;
+
+        for (var k = 0; k < alternativa.length; k++) {
+            alternativa[k].onclick = (function (index) {
+                return function () {
+                    selecionarAlternativa(index);
+                }
+            })(k);
+        }
+
+        var btnConfirmar = document.getElementById('btn_questao');
+        var btnProxima = btnConfirmar.nextElementSibling;
+
+        btnConfirmar.style.display = "inline-block";
+        btnConfirmar.innerHTML = "Confirmar";
+        btnConfirmar.disabled = false;
+        btnConfirmar.onclick = confirmar;
+
+        btnProxima.style.display = "inline-block";
+        btnProxima.innerHTML = "Próxima Pergunta";
+        btnProxima.disabled = true;
+        btnProxima.onclick = proximaPergunta;
+
+        if (indiceAtualQuestao == questoes.length - 1) {
+            btnProxima.innerHTML = "Finalizar Quiz";
+        }
+    }
+
+    // Função para preecher a alternativa selecionada com uma cor de destaque
+    function selecionarAlternativa(i) {
+        var alternativa = document.getElementById('alternativas').children;
+
+        for (var j = 0; j < alternativa.length; j++) {
+            alternativa[j].style.backgroundColor = "#FFFFFF";
+            alternativa[j].style.color = "#121212";
+        }
+
+        alternativa[i].style.backgroundColor = "#918e8e";
+        alternativa[i].style.color = "#FFFFFF";
+
+        alternativaSelecionada = i;
+    }
+
+    // Função para verificar se o usuário selecionou alguma alternativa e se essa alternativa está correta
+    function confirmar() {
+        if (alternativaSelecionada == -1) {
+            alert("Por favor, selecione uma alternativa antes de confirmar.");
+            return;
+        }
+
+        var alternativa = document.getElementById('alternativas').children;
+
+        if (alternativaSelecionada == questoes[indiceAtualQuestao].correta) {
+            acertos++;
+            alternativa[alternativaSelecionada].style.backgroundColor = "green";
+            alternativa[alternativaSelecionada].style.color = "white";
+        } else {
+            alternativa[alternativaSelecionada].style.backgroundColor = "#BC0909";
+            alternativa[alternativaSelecionada].style.color = "white";
+            alternativa[questoes[indiceAtualQuestao].correta].style.backgroundColor = "green";
+            alternativa[questoes[indiceAtualQuestao].correta].style.color = "white";
+        }
+
+        for (var j = 0; j < alternativa.length; j++) {
+            alternativa[j].onclick = null;
+        }
+
+        var btnConfirmar = document.getElementById('btn_questao');
+        var btnProxima = btnConfirmar.nextElementSibling;
+
+        btnConfirmar.disabled = true; 
+        btnProxima.disabled = false; 
     }
 
     // Função para acessar a próxima questão
     function proximaPergunta() {
-        indiceAtual++;
+        indiceAtualQuestao++;
 
-        if (indiceAtual < questoes.length) {
-            mostrarPergunta(indiceAtual);
+        if (indiceAtualQuestao < questoes.length) {
+            mostrarPergunta(indiceAtualQuestao);
         } else {
             mostrarResultados();
+        }
+    }
+
+    // Função para mostrar os resultados do usuário no quiz
+    function mostrarResultados() {
+        document.getElementById('questoes').style.display = "none";
+        document.getElementById('resultados_quiz').style.display = "flex";
+
+        document.getElementById('num_acertos').innerHTML = acertos;
+        document.getElementById('qtd_questoes').innerHTML = questoes.length;
+
+        var textoResultado = document.getElementById('resposta_resultado');
+
+        if (acertos == questoes.length) {
+            textoResultado.innerHTML = `Parabéns! Você conhece muito bem o São Paulo Futebol Clube!`;
+        } else if (acertos >= 7) {
+            textoResultado.innerHTML = `Muito bom! Você acertou ${acertos} questões. Continue estudando sobre o São Paulo FC.`
+        } else {
+            textoResultado.innerHTML = `É... que pena. Parece que você não conhece tão bem o São Paulo Futebol Clube. Mas não desanime. Realize uma nova tentativa e supere a si mesmo na próxima vez.`
         }
     }
 
