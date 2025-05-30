@@ -99,44 +99,44 @@
                     <div id="alternativas">
 
                         <!-- Alternativa 1 -->
-                        <div class="card_alternativa" id="primeiraOpcao">
+                        <div class="card_alternativa">
 
-                            <p>teste</p>
+                            <p>.</p>
 
                         </div>
 
                         <!-- Alternativa 2 -->
-                        <div class="card_alternativa" id="segundaOpcao">
+                        <div class="card_alternativa">
 
-                            <p>teste</p>
+                            <p>.</p>
 
                         </div>
 
                         <!-- Alternativa 3 -->
-                        <div class="card_alternativa" id="terceiraOpcao">
+                        <div class="card_alternativa">
 
-                            <p>teste</p>
+                            <p>.</p>
 
                         </div>
 
                         <!-- Alternativa 4 -->
-                        <div class="card_alternativa" id="quartaOpcao">
+                        <div class="card_alternativa">
 
-                            <p>teste</p>
+                            <p>.</p>
 
                         </div>
 
                         <!-- Alternativa 5 -->
-                        <div class="card_alternativa" id="quintaOpcao">
+                        <div class="card_alternativa">
 
-                            <p>teste</p>
+                            <p>.</p>
 
                         </div>
 
                         <!-- Alternativa 6 -->
-                        <div class="card_alternativa" id="sextaOpcao">
+                        <div class="card_alternativa">
 
-                            <p>teste</p>
+                            <p>.</p>
 
                         </div>
 
@@ -146,8 +146,9 @@
 
                         <p id="enunciado_questao"><span>0</span> - Qual foi o ano de fundação do São Paulo FC?</p>
 
-                        <button onclick="confirmar()" id="btn_questao">Confirmar</button>
-                        <button onclick="proximaPergunta()" id="btn_questao">Próxima pergunta</button>
+                        <button onclick="confirmar()" id="btn_confirmar" class="btn_questao">Confirmar</button>
+                        <button onclick="proximaPergunta()" id="btn_proxima" class="btn_questao">Próxima pergunta</button>
+                        <button onclick="finalizarQuiz()" id="btn_finalizar" class="btn_questao">Finalizar Quiz</button>
 
                     </div>
 
@@ -198,6 +199,8 @@
 
     // Questões estão no arquivo 'questoes.js'
 
+    // MODIFICAR BD
+
     // Variáveis auxiliares
     var indiceAtualQuestao = 0;
     var acertos = 0;
@@ -212,61 +215,54 @@
     }
 
     // Função para mostrar os dados referentes a questão (Nº da questão, enunciado, alternativas)
-    function mostrarPergunta(i) {
-        document.getElementById('titulo_questao').innerHTML = `Questão ${i+1}`
-        document.getElementById('numQuestao_atual').innerHTML = `${i+1}`;
+    function mostrarPergunta(numQuestao) {
+        document.getElementById('titulo_questao').innerHTML = `Questão ${numQuestao+1}`
+        document.getElementById('numQuestao_atual').innerHTML = `${numQuestao+1}`;
         document.getElementById('total_questoes').innerHTML = questoes.length;
-        document.getElementById('enunciado_questao').innerHTML = `${i+1} - ${questoes[i].pergunta}`;
+        document.getElementById('enunciado_questao').innerHTML = `${numQuestao+1} - ${questoes[numQuestao].pergunta}`;
 
         var alternativa = document.getElementById('alternativas').children;
 
-        for (var j = 0; j < alternativa.length; j++) {
-            alternativa[j].style.backgroundColor = "#FFFFFF";
-            alternativa[j].style.color = "#121212";
-            alternativa[j].innerHTML = `${questoes[i].alternativas[j]}`;
+        for (var i = 0; i < alternativa.length; i++) {
+            alternativa[i].style.backgroundColor = "#FFFFFF";
+            alternativa[i].style.color = "#121212";
+            alternativa[i].innerHTML = `${questoes[numQuestao].alternativas[i]}`;
         }
 
         alternativaSelecionada = -1;
 
-        for (var k = 0; k < alternativa.length; k++) {
-            alternativa[k].onclick = (function (index) {
+        for (var i = 0; i < alternativa.length; i++) {
+            alternativa[i].onclick = (function (index) {
                 return function () {
                     selecionarAlternativa(index);
                 }
-            })(k);
+            })(i);
         }
 
-        var btnConfirmar = document.getElementById('btn_questao');
-        var btnProxima = btnConfirmar.nextElementSibling;
-
-        btnConfirmar.style.display = "inline-block";
-        btnConfirmar.innerHTML = "Confirmar";
-        btnConfirmar.disabled = false;
-        btnConfirmar.onclick = confirmar;
-
-        btnProxima.style.display = "inline-block";
-        btnProxima.innerHTML = "Próxima Pergunta";
-        btnProxima.disabled = true;
-        btnProxima.onclick = proximaPergunta;
-
+        btn_confirmar.disabled = false;
+        btn_proxima.disabled = true;
+        btn_finalizar.disabled = true;
+        
         if (indiceAtualQuestao == questoes.length - 1) {
-            btnProxima.innerHTML = "Finalizar Quiz";
+            // btn_proxima.innerHTML = "Finalizar Quiz";
+            btn_proxima.style.display = "none"
+            btn_finalizar.style.display = "block"
         }
     }
 
     // Função para preecher a alternativa selecionada com uma cor de destaque
-    function selecionarAlternativa(i) {
+    function selecionarAlternativa(indiceAlternativa) {
         var alternativa = document.getElementById('alternativas').children;
 
-        for (var j = 0; j < alternativa.length; j++) {
-            alternativa[j].style.backgroundColor = "#FFFFFF";
-            alternativa[j].style.color = "#121212";
+        for (var i = 0; i < alternativa.length; i++) {
+            alternativa[i].style.backgroundColor = "#FFFFFF";
+            alternativa[i].style.color = "#121212";
         }
 
-        alternativa[i].style.backgroundColor = "#918e8e";
-        alternativa[i].style.color = "#FFFFFF";
+        alternativa[indiceAlternativa].style.backgroundColor = "#918e8e";
+        alternativa[indiceAlternativa].style.color = "#FFFFFF";
 
-        alternativaSelecionada = i;
+        alternativaSelecionada = indiceAlternativa;
     }
 
     // Função para verificar se o usuário selecionou alguma alternativa e se essa alternativa está correta
@@ -293,11 +289,10 @@
             alternativa[j].onclick = null;
         }
 
-        var btnConfirmar = document.getElementById('btn_questao');
-        var btnProxima = btnConfirmar.nextElementSibling;
+        btn_confirmar.disabled = true;
+        btn_proxima.disabled = false; 
+        btn_finalizar.disabled = false; 
 
-        btnConfirmar.disabled = true; 
-        btnProxima.disabled = false; 
     }
 
     // Função para acessar a próxima questão
@@ -306,9 +301,17 @@
 
         if (indiceAtualQuestao < questoes.length) {
             mostrarPergunta(indiceAtualQuestao);
-        } else {
-            mostrarResultados();
         }
+
+    }
+
+    // Função que aparece na última questão do quiz, que serve para encerrá-lo
+    function finalizarQuiz() {
+
+        if (indiceAtualQuestao == questoes.length - 1) {
+            mostrarResultados()
+        }
+
     }
 
     // Função para mostrar os resultados do usuário no quiz
