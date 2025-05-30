@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="style/perfil.css">
+    <script src="js/validacoes.js"></script>
 </head>
 
 <body>
@@ -65,6 +66,10 @@
         <div id="fundo_escuro">
 
             <div id="card_update">
+
+                <div class="card_erro" id="cardErro">
+                    <span id="mensagem_erro"></span>
+                </div>
 
                 <div id="cabecalho">
 
@@ -168,8 +173,18 @@
         var email = input_email.value;
         var senha = input_senha.value;
 
+        var msg_erro = validUpdate (username, dtNascimento, email, senha)
+
+        if (msg_erro) {
+            
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = `${msg_erro}`
+            sumirErro()
+            
+        } else {
+
         fetch("/usuarios/atualizar", {
-            method: "PUT", 
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -207,6 +222,9 @@
             });
 
         fundo_escuro.style.display = "none";
+
+        }
+
     }
 
     function abrir_atualizar() {
