@@ -182,8 +182,9 @@
 
     // Variáveis auxiliares
     var indiceAtualQuestao = 0;
-    var acertos = 0;
+    var acertos = 0; // ACUMULO DE ACERTOS NA TENTATIVA
     var alternativaSelecionada = -1;
+    // CRIAR VARIÁVEL PARA ARMAZENAR SE O USUÁRIO ACERTOU A QUESTÃO OU NÃO
 
     // Função para inicializar o quiz, ocultando as outras telas
     function iniciarQuiz() {
@@ -191,6 +192,9 @@
         document.getElementById('resultados_quiz').style.display = "none";
         document.getElementById('questoes').style.display = "flex";
         mostrarPergunta(indiceAtualQuestao);
+
+        // CRIAR ID DA TENTATIVA NO BANCO DE DADOS, JUNTO COM A FK DO USUÁRIO E O NÚMERO DE ACERTOS EM 0
+
     }
 
     // Função para mostrar os dados referentes a questão (Nº da questão, enunciado, alternativas)
@@ -249,6 +253,10 @@
     // Função para verificar se o usuário selecionou alguma alternativa e se essa alternativa está correta
     function confirmar() {
 
+        // QUANDO O USUÁRIO CONFIRMAR UMA ALTERNATIVA, SERÁ REGISTRADO O NÚMERO DA QUESTÃO RESPONDIDA
+
+        // QUANDO O USUÁRIO CONFIRMAR UMA ALTERNATIVA, OS DADOS SERÃO ENVIADOS PARA O BANCO (FK DA TENTATIVA, FK DA QUESTÃO, VARIÁVEL QUE VERIFICA SE ELE ACERTOU A QUESTÃO OU NÃO)
+
         if (alternativaSelecionada == -1) {
             
             cardErro.style.display = "block";
@@ -278,6 +286,8 @@
         btn_proxima.disabled = false;
         btn_finalizar.disabled = false;
 
+        
+
     }
 
     // Função para acessar a próxima questão
@@ -296,6 +306,8 @@
         if (indiceAtualQuestao == questoes.length - 1) {
             mostrarResultados()
         }
+
+        // QUANDO O USUÁRIO FINALIZAR O QUIZ, ATUALIZAR A TABELA DE TENTATIVAS COM O NÚMERO DE ACERTOS NA TENTATIVA
 
     }
 
