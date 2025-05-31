@@ -182,19 +182,44 @@
 
     // Variáveis auxiliares
     var indiceAtualQuestao = 0;
-    var acertos = 0; // ACUMULO DE ACERTOS NA TENTATIVA
     var alternativaSelecionada = -1;
-    // CRIAR VARIÁVEL PARA ARMAZENAR SE O USUÁRIO ACERTOU A QUESTÃO OU NÃO
+
+    var numeroQuest = 0
+    var fkUsuario = sessionStorage.ID_USUARIO;
+    var fkQuestao = 0
+    var idTentativa = 0;
+    var acertoQuestao = 0
+    var acertos = 0;
 
     // Função para inicializar o quiz, ocultando as outras telas
     function iniciarQuiz() {
         document.getElementById('tela_inicial').style.display = "none";
         document.getElementById('resultados_quiz').style.display = "none";
         document.getElementById('questoes').style.display = "flex";
-        mostrarPergunta(indiceAtualQuestao);
 
-        // CRIAR ID DA TENTATIVA NO BANCO DE DADOS, JUNTO COM A FK DO USUÁRIO E O NÚMERO DE ACERTOS EM 0
+        fetch("/tentativas/iniciar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                acertoServer: acertos,  // 0 no início
+                fkUsuarioServer: fkUsuario
+            }),
+        }).then(response => response.json())
+            .then(data => {
 
+                idTentativa = data.insertId || data.idTentativa || null;
+                if (!idTentativa) {
+                    alert("Erro ao iniciar a tentativa do quiz!");
+                    window.location.reload();
+                } else {
+                    mostrarPergunta(indiceAtualQuestao);
+                }
+            }).catch(err => {
+                console.error(err);
+                alert("Erro ao iniciar quiz");
+            });
     }
 
     // Função para mostrar os dados referentes a questão (Nº da questão, enunciado, alternativas)
@@ -253,25 +278,22 @@
     // Função para verificar se o usuário selecionou alguma alternativa e se essa alternativa está correta
     function confirmar() {
 
-        // QUANDO O USUÁRIO CONFIRMAR UMA ALTERNATIVA, SERÁ REGISTRADO O NÚMERO DA QUESTÃO RESPONDIDA
-
-        // QUANDO O USUÁRIO CONFIRMAR UMA ALTERNATIVA, OS DADOS SERÃO ENVIADOS PARA O BANCO (FK DA TENTATIVA, FK DA QUESTÃO, VARIÁVEL QUE VERIFICA SE ELE ACERTOU A QUESTÃO OU NÃO)
-
         if (alternativaSelecionada == -1) {
-            
             cardErro.style.display = "block";
-            mensagem_erro.innerHTML = `Por favor, selecione uma alternativa antes de confirmar.`
-            sumirErro()
-            
+            mensagem_erro.innerHTML = `Por favor, selecione uma alternativa antes de confirmar.`;
+            sumirErro();
+            return;
         }
 
         var alternativa = document.getElementById('alternativas').children;
 
         if (alternativaSelecionada == questoes[indiceAtualQuestao].correta) {
             acertos++;
+            acertoQuestao = 1
             alternativa[alternativaSelecionada].style.backgroundColor = "green";
             alternativa[alternativaSelecionada].style.color = "white";
         } else {
+            acertoQuestao = 0
             alternativa[alternativaSelecionada].style.backgroundColor = "#BC0909";
             alternativa[alternativaSelecionada].style.color = "white";
             alternativa[questoes[indiceAtualQuestao].correta].style.backgroundColor = "green";
@@ -286,7 +308,48 @@
         btn_proxima.disabled = false;
         btn_finalizar.disabled = false;
 
-        
+        numeroQuest++
+
+        fkQuestao = numeroQuest;
+
+        // Enviar número da questão para o BD
+        fetch("/respostas/questao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                numeroQuestServer: numeroQuest
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Resposta registrada com sucesso", data);
+            })
+            .catch(err => {
+                console.error("Erro ao registrar resposta:", err);
+            });
+
+
+        // Enviar dados referentes a resposta (tentativa, questão e acertou ou não)
+        fetch("/respostas/registrarResposta", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkTentativaServer: idTentativa,
+                fkQuestaoServer: fkQuestao,
+                acertoQuestaoServer: acertoQuestao
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Resposta registrada com sucesso", data);
+            })
+            .catch(err => {
+                console.error("Erro ao registrar resposta:", err);
+            });
 
     }
 
@@ -306,8 +369,6 @@
         if (indiceAtualQuestao == questoes.length - 1) {
             mostrarResultados()
         }
-
-        // QUANDO O USUÁRIO FINALIZAR O QUIZ, ATUALIZAR A TABELA DE TENTATIVAS COM O NÚMERO DE ACERTOS NA TENTATIVA
 
     }
 
