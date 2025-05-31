@@ -203,7 +203,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                acertoServer: acertos,  // 0 no início
+                acertoServer: acertos,
                 fkUsuarioServer: fkUsuario
             }),
         }).then(response => response.json())
@@ -321,8 +321,7 @@
             body: JSON.stringify({
                 numeroQuestServer: numeroQuest
             }),
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(data => {
                 console.log("Resposta registrada com sucesso", data);
             })
@@ -331,7 +330,7 @@
             });
 
 
-        // Enviar dados referentes a resposta (tentativa, questão e acertou ou não)
+        // Enviar dados referentes a resposta (tentativa, questão e acertou ou não) para o BD
         fetch("/respostas/registrarResposta", {
             method: "POST",
             headers: {
@@ -367,8 +366,36 @@
     function finalizarQuiz() {
 
         if (indiceAtualQuestao == questoes.length - 1) {
+
+            fetch("/tentativas/atualizarAcerto", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idTentativaServer: idTentativa,
+                    acertosServer: acertos,
+                    fkUsuarioServer: fkUsuario
+                }),
+            }).then(resposta => {
+                if (resposta.ok) {
+                    console.log("Acertos atualizados com sucesso!");
+
+                } else {
+                    return resposta.text().then(texto => {
+                        throw new Error(texto);
+                    });
+                }
+            })
+                .catch(err => {
+                    console.error("Erro ao atualizar acertos:", err);
+                });
+
             mostrarResultados()
+
         }
+
+
 
     }
 

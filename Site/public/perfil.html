@@ -173,31 +173,30 @@
         var email = input_email.value;
         var senha = input_senha.value;
 
-        var msg_erro = validUpdate (username, dtNascimento, email, senha)
+        var msg_erro = validUpdate(username, dtNascimento, email, senha)
 
         if (msg_erro) {
-            
+
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = `${msg_erro}`
             sumirErro()
-            
+
         } else {
 
-        fetch("/usuarios/atualizar", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                idUsuarioServer: idUsuario,
-                usernameServer: username,
-                dtNascServer: dtNascimento,
-                emailServer: email,
-                senhaServer: senha
-            }),
-        })
-            .then(res => {
-                if (res.ok) {
+            fetch("/usuarios/atualizar", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario,
+                    usernameServer: username,
+                    dtNascServer: dtNascimento,
+                    emailServer: email,
+                    senhaServer: senha
+                }),
+            }).then(resposta => {
+                if (resposta.ok) {
                     alert("Dados atualizados com sucesso!");
 
                     dado_username.innerHTML = username;
@@ -211,17 +210,17 @@
                     sessionStorage.SENHA_USUARIO = senha;
 
                 } else {
-                    return res.text().then(texto => {
+                    return resposta.text().then(texto => {
                         throw new Error(texto);
                     });
                 }
             })
-            .catch(err => {
-                console.error("Erro ao atualizar:", err);
-                alert("Erro ao atualizar: " + err.message);
-            });
+                .catch(err => {
+                    console.error("Erro ao atualizar:", err);
+                    alert("Erro ao atualizar: " + err.message);
+                });
 
-        fundo_escuro.style.display = "none";
+            fundo_escuro.style.display = "none";
 
         }
 

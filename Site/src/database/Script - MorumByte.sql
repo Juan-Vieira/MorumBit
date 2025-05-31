@@ -51,8 +51,8 @@ INSERT INTO questoes_quiz (numero) VALUES
 -- Inserindo tentativas
 
 -- INÍCIO DO QUIZ
-INSERT INTO tentativas_quiz (acertos, fkUsuario) VALUES
-(0, 1);  -- user1 acertou 2 questões
+INSERT INTO tentativas_quiz (idTentativa, acertos, fkUsuario) VALUES
+(DEFAULT, 0, 1);  -- user1 acertou 2 questões
 
 INSERT INTO tentativas_quiz (acertos, fkUsuario) VALUES
 (2, 1),  -- user1 acertou 2 questões
@@ -78,7 +78,6 @@ INSERT INTO respostas_quiz (fkTentativa, fkQuestao, acertos) VALUES
 (4, 2, 0),  -- tentativa 4, questão 2, errou
 (4, 3, 1);  -- tentativa 4, questão 3, acertou
 
-	
 -- Exibindo todos os dados
 select * from usuario;
 select * from tentativas_quiz;
