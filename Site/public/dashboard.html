@@ -94,7 +94,7 @@
                     <p class="titulo">Taxa média de acertos dos usuários por questão</p>
 
                     <canvas id="myChart_barra_horizontal"
-                        style="position: relative; width: 80px; height: 25px; margin-inline: 50px; "></canvas>
+                        style="position: relative; width: 80px; height: 25px; margin-inline: 50px; margin-top: 10px;"></canvas>
 
                 </div>
 
@@ -335,7 +335,6 @@
                 type: 'bar',
                 data: data_barra_horizontal,
                 options: {
-                    indexAxis: 'y',
                     plugins: {
                         legend: {
                             position: 'right'
@@ -343,16 +342,13 @@
                     },
                     scales: {
                         x: {
-                            grid: {
-                                color: '#4a4848'
-                            },
                             ticks: {
                                 color: '#b4b0b0'
                             }
                         },
                         y: {
                             grid: {
-                                color: ''
+                                color: '#4a4848'
                             },
                             ticks: {
                                 color: '#b4b0b0'
