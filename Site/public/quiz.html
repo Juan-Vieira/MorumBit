@@ -324,31 +324,33 @@
         }).then(response => response.json())
             .then(data => {
                 console.log("Resposta registrada com sucesso", data);
+
+                // Enviar dados referentes a resposta (tentativa, questão e acertou ou não) para o BD
+                fetch("/respostas/registrarResposta", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        fkTentativaServer: idTentativa,
+                        fkQuestaoServer: fkQuestao,
+                        acertoQuestaoServer: acertoQuestao
+                    }),
+                }).then(response => response.json())
+                    .then(data => {
+                        console.log("Resposta registrada com sucesso", data);
+                    })
+                    .catch(err => {
+                        console.error("Erro ao registrar resposta:", err);
+                    });
+                    
             })
             .catch(err => {
                 console.error("Erro ao registrar resposta:", err);
             });
 
 
-        // Enviar dados referentes a resposta (tentativa, questão e acertou ou não) para o BD
-        fetch("/respostas/registrarResposta", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                fkTentativaServer: idTentativa,
-                fkQuestaoServer: fkQuestao,
-                acertoQuestaoServer: acertoQuestao
-            }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Resposta registrada com sucesso", data);
-            })
-            .catch(err => {
-                console.error("Erro ao registrar resposta:", err);
-            });
+
 
     }
 
