@@ -39,12 +39,13 @@ function porcentErros() {
 // Desempenho dos usuários no quiz
 function desempenho() {
 
-    var instrucaoSql = `SELECT t.idTentativa, u.username AS user, SUM(t.acertos) AS total_acertos FROM usuario u JOIN tentativas_quiz t ON u.idUsuario = t.fkUsuario GROUP BY t.idTentativa, u.idUsuario ORDER BY t.idTentativa;`
+    var instrucaoSql = `SELECT t.idTentativa, u.username AS user, SUM(t.acertos) AS total_acertos FROM usuario u JOIN tentativas_quiz t ON u.idUsuario = t.fkUsuario GROUP BY t.idTentativa, u.idUsuario ORDER BY t.idTentativa DESC LIMIT 10;`
 
     return database.executar(instrucaoSql)
 
 }
 
+// Porcentagem média de acertos por questão
 function mediaQuestao() {
 
     var instrucaoSql = `SELECT fkQuestao AS numQuestao, ROUND(AVG(acertos) * 100, 2) AS media_quest FROM respostas_quiz GROUP BY fkQuestao;`

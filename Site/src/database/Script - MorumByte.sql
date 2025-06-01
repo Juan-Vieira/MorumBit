@@ -84,6 +84,10 @@ select * from tentativas_quiz;
 select * from questoes_quiz;
 select * from respostas_quiz;
 
+drop table respostas_quiz;
+drop table tentativas_quiz;
+drop table questoes_quiz;
+
 -- UPDATE
 -- Atualizar Dados
 UPDATE usuario SET username = "Reiz",
@@ -120,7 +124,8 @@ SELECT t.idTentativa, u.username, SUM(t.acertos) AS total_acertos
 FROM usuario u
 JOIN tentativas_quiz t ON u.idUsuario = t.fkUsuario
 GROUP BY t.idTentativa, u.idUsuario
-ORDER BY t.idTentativa;
+ORDER BY t.idTentativa DESC
+LIMIT 10;
 
 -- Questão com maior porcentagem de acertos
 SELECT fkQuestao AS numQuestao, 

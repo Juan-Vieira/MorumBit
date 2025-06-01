@@ -7,6 +7,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="style/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/questoes.js"></script>
 </head>
 
 <body>
@@ -44,7 +45,7 @@
                     <div id="dash">
 
                         <img class="img_lat" src="assets/icons/dashboard.png">
-                        <a href="dashboard.html">Dashboard</a>
+                        <a id="button_dash" href="dashboard.html">Dashboard</a>
 
                     </div>
 
@@ -91,7 +92,7 @@
 
                 <div class="grafico">
 
-                    <p class="titulo">Taxa média de acertos dos usuários por questão</p>
+                    <p class="titulo">% média de acertos dos usuários por questão</p>
 
                     <canvas id="myChart_barra_horizontal"
                         style="position: relative; width: 80px; height: 25px; margin-inline: 50px; margin-top: 10px;"></canvas>
@@ -107,8 +108,7 @@
                         -
                         <span class="porcentagem_qtd" id="porcent_acertos">..</span>
                     </p>
-                    <p class="txt">aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a
-                    </p>
+                    <p class="txt" id="txt_acerto">..</p>
 
                 </div>
 
@@ -134,8 +134,7 @@
                         -
                         <span class="porcentagem_qtd" id="porcent_erros">..</span>
                     </p>
-                    <p class="txt">aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a
-                    </p>
+                    <p class="txt" id="txt_erro">..</p>
 
                 </div>
 
@@ -191,7 +190,13 @@
 
             console.log(`Média de acertos: ${mediaAcertos}`);
 
-            qtd_acertos.innerHTML = `${mediaAcertos}`
+            if (mediaAcertos == null) {
+                qtd_acertos.innerHTML = 0
+            }
+            else {
+                qtd_acertos.innerHTML = `${mediaAcertos}`
+            }
+            
 
         })
         .catch(err => {
@@ -213,6 +218,8 @@
             quest_acertos.innerHTML = `${numQuestaoAcertos}`;
             porcent_acertos.innerHTML = `${maisAcertos}%`;
 
+            txt_acerto.innerHTML = `${questoes[numQuestaoAcertos-1].pergunta}`
+
         })
         .catch(err => {
             console.error("Erro ao buscar questão com maior % de acertos:", err);
@@ -232,6 +239,8 @@
 
             quest_erros.innerHTML = `${numQuestaoErros}`;
             porcent_erros.innerHTML = `${maisErros}%`;
+
+            txt_erro.innerHTML = `${questoes[numQuestaoErros-1].pergunta}`
 
         })
         .catch(err => {
@@ -367,17 +376,6 @@
         .catch(err => {
             console.error("Erro ao exibir a média de acertos por questão no quiz:", err);
         });
-
-
-    // MÉDIA DE ACERTOS EM CADA QUESTÃO
-
-    
-
-
-    // Configurações
-
-
-
 
 
 </script>

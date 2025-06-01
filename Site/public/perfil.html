@@ -161,8 +161,12 @@
 
 <script>
 
+    var data = new Date(sessionStorage.NASC_USUARIO);
+
+    var data_formatada = new Intl.DateTimeFormat('pt-BR').format(data);
+
     dado_username.innerHTML = sessionStorage.NOME_USUARIO
-    dado_dtNasc.innerHTML = sessionStorage.NASC_USUARIO
+    dado_dtNasc.innerHTML = data_formatada
     dado_email.innerHTML = sessionStorage.EMAIL_USUARIO
     dado_senha.innerHTML = sessionStorage.SENHA_USUARIO
 
@@ -199,15 +203,20 @@
                 if (resposta.ok) {
                     alert("Dados atualizados com sucesso!");
 
-                    dado_username.innerHTML = username;
-                    dado_dtNasc.innerHTML = dtNascimento;
-                    dado_email.innerHTML = email;
-                    dado_senha.innerHTML = senha;
+                    var data = new Date(dtNascimento);
+
+                    var data_formatada = new Intl.DateTimeFormat('pt-BR').format(data);
 
                     sessionStorage.NOME_USUARIO = username;
-                    sessionStorage.NASC_USUARIO = dtNascimento;
+                    sessionStorage.NASC_USUARIO = data_formatada;
                     sessionStorage.EMAIL_USUARIO = email;
                     sessionStorage.SENHA_USUARIO = senha;
+
+                    dado_username.innerHTML = sessionStorage.NOME_USUARIO;
+                    dado_dtNasc.innerHTML = sessionStorage.NASC_USUARIO;
+                    dado_email.innerHTML = sessionStorage.EMAIL_USUARIO;
+                    dado_senha.innerHTML = sessionStorage.SENHA_USUARIO;
+
 
                 } else {
                     return resposta.text().then(texto => {
