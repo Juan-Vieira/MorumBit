@@ -74,14 +74,14 @@
                     <div id="media_acertos">
 
                         <p id="txt_media_acertos">Média de acertos dos usuários no quiz</p>
-                        <p id="qtd_acertos">8</p>
+                        <p id="qtd_acertos">..</p>
 
                     </div>
 
                     <div id="qtd_usuarios">
 
                         <p id="txt_qtd_usuarios">Nº de usuários que respondeu o quiz</p>
-                        <p id="num_qtd_user">20</p>
+                        <p id="num_qtd_user">..</p>
 
                     </div>
                 </div>
@@ -152,6 +152,50 @@
 
 <script>
 
+    // var qtd_usuarios = 0
+
+
+
+
+    // Número de usuários que respondeu o quiz
+    fetch("/dashboard/numUsuarios", {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Números de usuários obtidos com sucesso!:", data);
+
+            var qtd_usuarios = data[0].usuarios;
+
+            console.log(`quantidade de usuários que respondeu o quiz: ${qtd_usuarios}`);
+
+            num_qtd_user.innerHTML = `${qtd_usuarios}`
+
+        })
+        .catch(err => {
+            console.error("Erro ao buscar número de usuários:", err);
+        });
+
+    // Número de usuários que respondeu o quiz
+    fetch("/dashboard/mediaAcertos", {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Média de acertos obtida com sucesso:", data);
+
+            var mediaAcertos = data[0].media_acertos;
+
+            console.log(`Média de acertos: ${qtd_usuarios}`);
+
+            qtd_acertos.innerHTML = `${mediaAcertos}`
+
+        })
+        .catch(err => {
+            console.error("Erro ao buscar número de usuários:", err);
+        });
+
+
     // GRÁFICOS
 
     // DESEMPENHO DOS USUÁRIOS
@@ -190,7 +234,7 @@
 
 
     // Configurações
-    
+
     const data_barra_horizontal = {
         labels: quests,
         datasets: [

@@ -52,7 +52,7 @@ INSERT INTO questoes_quiz (numero) VALUES
 
 -- INÍCIO DO QUIZ
 INSERT INTO tentativas_quiz (idTentativa, acertos, fkUsuario) VALUES
-(DEFAULT, 0, 1);  -- user1 acertou 2 questões
+(DEFAULT, 0, 1);
 
 INSERT INTO tentativas_quiz (acertos, fkUsuario) VALUES
 (2, 1),  -- user1 acertou 2 questões
@@ -102,7 +102,7 @@ WHERE idTentativa = 3 AND fkUsuario = 3;
  SELECT idUsuario, username, dtNascimento, email, senha FROM usuario WHERE email = 'juan@gmail.com' AND senha = 'juan123';
 
 -- Número de usuários que respondeu o quiz
-SELECT COUNT(DISTINCT fkUsuario) AS usuarios_que_responderam
+SELECT COUNT(DISTINCT fkUsuario) AS 'Usuários que responderam o quiz'
 FROM tentativas_quiz;
 
 -- Média de acertos dos usuários no quiz
@@ -111,7 +111,7 @@ FROM tentativas_quiz;
 
 -- Taxa média de acertos por questão
 SELECT fkQuestao, 
-       ROUND(AVG(acertos) * 100, 2) AS taxa_media_acertos_percentual
+       ROUND(AVG(acertos) * 100, 2) AS "Taxa média de acertos por questão"
 FROM respostas_quiz
 GROUP BY fkQuestao;
 
@@ -124,16 +124,16 @@ ORDER BY t.idTentativa;
 
 -- Questão com maior porcentagem de acertos
 SELECT fkQuestao, 
-       ROUND(SUM(acertos) / COUNT(*) * 100, 2) AS porcentagem_acertos
+       ROUND(SUM(acertos) / COUNT(*) * 100, 2) AS mais_acertos
 FROM respostas_quiz
 GROUP BY fkQuestao
-ORDER BY porcentagem_acertos DESC
+ORDER BY mais_acertos DESC
 LIMIT 1;
 
 -- Questão com maior porcentagem de erros
 SELECT fkQuestao, 
-       ROUND((1 - AVG(acertos)) * 100, 2) AS porcentagem_erros
+       ROUND((1 - AVG(acertos)) * 100, 2) AS mais_erros
 FROM respostas_quiz
 GROUP BY fkQuestao
-ORDER BY porcentagem_erros DESC
+ORDER BY mais_erros DESC
 LIMIT 1;
