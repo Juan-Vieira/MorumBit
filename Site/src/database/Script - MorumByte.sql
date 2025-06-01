@@ -123,15 +123,15 @@ GROUP BY t.idTentativa, u.idUsuario
 ORDER BY t.idTentativa;
 
 -- Questão com maior porcentagem de acertos
-SELECT fkQuestao, 
-       ROUND(SUM(acertos) / COUNT(*) * 100, 2) AS mais_acertos
+SELECT fkQuestao AS numQuestao, 
+       ROUND(SUM(acertos) / COUNT(*) * 100, 0) AS mais_acertos
 FROM respostas_quiz
 GROUP BY fkQuestao
 ORDER BY mais_acertos DESC
 LIMIT 1;
 
 -- Questão com maior porcentagem de erros
-SELECT fkQuestao, 
+SELECT fkQuestao AS numQuestao, 
        ROUND((1 - AVG(acertos)) * 100, 2) AS mais_erros
 FROM respostas_quiz
 GROUP BY fkQuestao

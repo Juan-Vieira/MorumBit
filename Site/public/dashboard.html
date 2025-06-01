@@ -94,7 +94,7 @@
                     <p class="titulo">Taxa média de acertos dos usuários por questão</p>
 
                     <canvas id="myChart_barra_horizontal"
-                        style="position: relative; width: 80px; height: 25px; margin-inline: 50px; margin-top: 10px;"></canvas>
+                        style="position: relative; width: 80px; height: 25px; margin-inline: 50px; "></canvas>
 
                 </div>
 
@@ -103,9 +103,9 @@
                     <p class="titulo">+Acertos</p>
                     <p class="questao">
                         Questão
-                        <span class="num_questao">1</span>
+                        <span class="num_questao" id="quest_acertos">..</span>
                         -
-                        <span class="porcentagem_qtd">87%</span>
+                        <span class="porcentagem_qtd" id="porcent_acertos">..</span>
                     </p>
                     <p class="txt">aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a
                     </p>
@@ -130,9 +130,9 @@
                     <p class="titulo">+Erros</p>
                     <p class="questao">
                         Questão
-                        <span class="num_questao">3</span>
+                        <span class="num_questao" id="quest_erros">..</span>
                         -
-                        <span class="porcentagem_qtd">8%</span>
+                        <span class="porcentagem_qtd" id="porcent_erros">..</span>
                     </p>
                     <p class="txt">aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a aaa aaaaaaa aaa aaaaaaaa aa aa aaaaa aaa a
                     </p>
@@ -152,10 +152,15 @@
 
 <script>
 
-    // var qtd_usuarios = 0
+    // Desempenho dos usuários no quiz
+    var infoUser = 0;
+    var usuarios = [];
+    var acertos = [];
 
-
-
+    // Média de acertos por questão
+    var infoQuest = 0
+    var quests = [];
+    var porcent = [];
 
     // Número de usuários que respondeu o quiz
     fetch("/dashboard/numUsuarios", {
@@ -163,7 +168,6 @@
     })
         .then(response => response.json())
         .then(data => {
-            console.log("Números de usuários obtidos com sucesso!:", data);
 
             var qtd_usuarios = data[0].usuarios;
 
@@ -176,145 +180,208 @@
             console.error("Erro ao buscar número de usuários:", err);
         });
 
-    // Número de usuários que respondeu o quiz
+    // Média de acertos dos usuários no quiz
     fetch("/dashboard/mediaAcertos", {
         method: "GET"
     })
         .then(response => response.json())
         .then(data => {
-            console.log("Média de acertos obtida com sucesso:", data);
 
             var mediaAcertos = data[0].media_acertos;
 
-            console.log(`Média de acertos: ${qtd_usuarios}`);
+            console.log(`Média de acertos: ${mediaAcertos}`);
 
             qtd_acertos.innerHTML = `${mediaAcertos}`
 
         })
         .catch(err => {
-            console.error("Erro ao buscar número de usuários:", err);
+            console.error("Erro ao buscar média de acertos:", err);
+        });
+
+    // Questão com maior porcentagem de acertos
+    fetch("/dashboard/porcentAcertos", {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            var numQuestaoAcertos = data[0].numQuestao
+            var maisAcertos = data[0].mais_acertos;
+
+            console.log(`Questão com maior % de acertos: ${numQuestaoAcertos} - ${maisAcertos}`);
+
+            quest_acertos.innerHTML = `${numQuestaoAcertos}`;
+            porcent_acertos.innerHTML = `${maisAcertos}%`;
+
+        })
+        .catch(err => {
+            console.error("Erro ao buscar questão com maior % de acertos:", err);
+        });
+
+    // Questão com maior porcentagem de erros
+    fetch("/dashboard/porcentErros", {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            var numQuestaoErros = data[0].numQuestao
+            var maisErros = data[0].mais_erros;
+
+            console.log(`Questão com maior % de erros: ${numQuestaoErros} - ${maisErros}`);
+
+            quest_erros.innerHTML = `${numQuestaoErros}`;
+            porcent_erros.innerHTML = `${maisErros}%`;
+
+        })
+        .catch(err => {
+            console.error("Erro ao buscar questão com maior % de acertos:", err);
+        });
+
+    // Desempenho dos usuários no quiz + gráfico
+    fetch("/dashboard/desempenhoUsers", {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            infoUser = data
+
+            infoUser.forEach(resposta => {
+                console.log(`user: ${resposta.user}, Acertos: ${resposta.total_acertos}`);
+                usuarios.push(resposta.user)
+                acertos.push(resposta.total_acertos)
+
+            });
+
+            const data_barra = {
+                labels: usuarios,
+                datasets: [
+                    {
+                        label: 'Usuários',
+                        backgroundColor: '#BC0909',
+                        borderColor: '#FFFFFF',
+                        data: acertos,
+                    },
+                ]
+            };
+
+            const config_barra = {
+                type: 'bar',
+                data: data_barra,
+                options: {
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: '#b4b0b0'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: '#4a4848'
+                            },
+                            ticks: {
+                                color: '#b4b0b0'
+                            }
+                        }
+                    }
+                }
+            };
+
+            const myChart_barra = new Chart(
+                document.getElementById('myChart_barra'),
+                config_barra
+            );
+
+        })
+        .catch(err => {
+            console.error("Erro ao buscar o desempenho dos usuários no quiz:", err);
+        });
+
+        // Média de acertos em cada questão do quiz + gráfico
+    fetch("/dashboard/mediaQuestao", {
+        method: "GET"
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            infoQuest = data
+
+            infoQuest.forEach(resposta => {
+                console.log(`número: ${resposta.numQuestao}, Média: ${resposta.media_quest}`);
+                quests.push(resposta.numQuestao)
+                porcent.push(resposta.media_quest)
+
+            });
+
+            const data_barra_horizontal = {
+                labels: quests,
+                datasets: [
+                    {
+                        label: 'Acertos',
+                        backgroundColor: '#BC0909',
+                        borderColor: '#FFFFFF',
+                        data: porcent,
+                    },
+                ]
+            };
+
+            const config_barra_horizontal = {
+                type: 'bar',
+                data: data_barra_horizontal,
+                options: {
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: '#4a4848'
+                            },
+                            ticks: {
+                                color: '#b4b0b0'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: ''
+                            },
+                            ticks: {
+                                color: '#b4b0b0'
+                            }
+                        }
+                    }
+                }
+            };
+
+            const myChart_barra_horizontal = new Chart(
+                document.getElementById('myChart_barra_horizontal'),
+                config_barra_horizontal
+            );
+
+        })
+        .catch(err => {
+            console.error("Erro ao exibir a média de acertos por questão no quiz:", err);
         });
 
 
-    // GRÁFICOS
-
-    // DESEMPENHO DOS USUÁRIOS
-
-    const usuarios = [
-        'Juan',
-        'Mateus',
-        'Ayane',
-        'Lucas',
-        'Euclides',
-        'Matheus',
-        'Juan',
-        'Mateus',
-        'Ayane',
-        'Rogério'
-    ];
-
-    const acertos = [10, 5, 3, 6, 8, 9, 2, 5, 8, 10];
-
     // MÉDIA DE ACERTOS EM CADA QUESTÃO
 
-    const quests = [
-        '10',
-        '9',
-        '8',
-        '7',
-        '6',
-        '5',
-        '4',
-        '3',
-        '2',
-        '1',
-    ];
-
-    const porcent = [20, 10, 60, 40, 80, 80, 30, 100, 40, 60]
+    
 
 
     // Configurações
 
-    const data_barra_horizontal = {
-        labels: quests,
-        datasets: [
-            {
-                label: 'Acertos',
-                backgroundColor: '#BC0909',
-                borderColor: '#FFFFFF',
-                data: porcent,
-            },
-        ]
-    };
 
-    const data_barra = {
-        labels: usuarios,
-        datasets: [
-            {
-                label: 'Usuários',
-                backgroundColor: '#BC0909',
-                borderColor: '#FFFFFF',
-                data: acertos,
-            },
-        ]
-    };
 
-    const config_barra_horizontal = {
-        type: 'bar',
-        data: data_barra_horizontal,
-        options: {
-            indexAxis: 'y',
-            scales: {
-                x: {
-                    grid: {
-                        color: '#4a4848'
-                    },
-                    ticks: {
-                        color: '#b4b0b0'
-                    }
-                },
-                y: {
-                    grid: {
-                        color: ''
-                    },
-                    ticks: {
-                        color: '#b4b0b0'
-                    }
-                }
-            }
-        }
-    };
 
-    const config_barra = {
-        type: 'bar',
-        data: data_barra,
-        options: {
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#b4b0b0'
-                    }
-                },
-                y: {
-                    grid: {
-                        color: '#4a4848'
-                    },
-                    ticks: {
-                        color: '#b4b0b0'
-                    }
-                }
-            }
-        }
-    };
-
-    const myChart_barra_horizontal = new Chart(
-        document.getElementById('myChart_barra_horizontal'),
-        config_barra_horizontal
-    );
-
-    const myChart_barra = new Chart(
-        document.getElementById('myChart_barra'),
-        config_barra
-    );
 
 </script>
