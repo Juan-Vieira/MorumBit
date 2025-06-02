@@ -97,7 +97,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 900px;
+    height: 800px;
     border-bottom: solid 2px rgba(0, 0, 0, 0.118); 
 }
 
@@ -129,14 +129,14 @@
 #secao_clube #txt_clube {
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 600px;
     height: 100%;
-    margin-right: 100px;
+    margin-right: 170px;
 }
 
 #secao_clube #txt_clube #titulo_clube {
     font-family: "Fira Sans";
-    font-size: 50px;
+    font-size: 35px;
     font-weight: 600;
     color: #BC0909;
     margin-top: 140px;
@@ -144,16 +144,16 @@
 
 #secao_clube #txt_clube #subtitulo_clube {
     font-family: "Fira Sans";
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
     margin-top: 40px;
 }
 
 #secao_clube #txt_clube #txt {
     font-family: "Open Sans";
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 400;
-    width: 700px;
+    width: 600px;
     text-align: justify;
     margin-top: 20px;
 }
@@ -169,13 +169,13 @@
     width: 200px;
     height: 60px;
     align-self: center;
-    margin-top: 40px;
+    margin-top: 50px;
     cursor: pointer;
 }
 
 #secao_clube #img_clube {
     width: 450px;
-    height: 600px;
+    height: 550px;
     border-radius: 20px;
     box-shadow: 10px 10px 30px black;
 }
@@ -218,15 +218,15 @@
 #secao_sobreMim #txt_sobreMim {
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 600px;
     height: 100%;
-    margin-right: 100px;
+    margin-right: 130px;
     align-items: flex-end;
 }
 
 #secao_sobreMim #txt_sobreMim #titulo_clube {
     font-family: "Fira Sans";
-    font-size: 50px;
+    font-size: 35px;
     font-weight: 600;
     color: #BC0909;
     margin-top: 140px;
@@ -234,16 +234,16 @@
 
 #secao_sobreMim #txt_sobreMim #subtitulo_clube {
     font-family: "Fira Sans";
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
     margin-top: 40px;
 }
 
 #secao_sobreMim #txt_sobreMim #txt {
     font-family: "Open Sans";
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 400;
-    width: 700px;
+    width: 600px;
     text-align: justify;
     margin-top: 20px;
 }
@@ -266,13 +266,13 @@
 #secao_sobreMim #imgs {
     width: 450px;
     height: 900px;
-    margin-left: 100px;
-    margin-right: 110px;
+    margin-left: 110px;
+    margin-right: 170px;
 }
 
 #secao_sobreMim #img_clube_01 {
     width: 450px;
-    height: 350px;
+    height: 310px;
     border-radius: 20px;
     box-shadow: 10px 10px 30px black;
     margin-bottom: 50px;
