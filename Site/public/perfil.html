@@ -203,9 +203,11 @@
                 if (resposta.ok) {
                     alert("Dados atualizados com sucesso!");
 
-                    var data = new Date(dtNascimento);
+                    var data = dtNascimento;
 
-                    var data_formatada = new Intl.DateTimeFormat('pt-BR').format(data);
+                    var partes = data.split("-");
+
+                    var data_formatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
 
                     sessionStorage.NOME_USUARIO = username;
                     sessionStorage.NASC_USUARIO = data_formatada;
