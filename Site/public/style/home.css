@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar_geral {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80px;
+}
+
+.navbar_geral .nav_red {
+    background-color: #BC0909;
+    width: 100%;
+    height: 15px;
+}
+
+.navbar_geral .nav_white {
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 15px;
+}
+
+.navbar_geral .nav_black {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #121212;
+    width: 100%;
+    height: 100%;
+
+}
+
+.nav_black img {
+    width: 200px;
+    margin-left: 40px;
+}
+
+.nav_black .botoes_nav {
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    margin-right: 100px;
+}
+
+.nav_black .botoes_nav a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.nav_black .botoes_nav .home_nav {
+    color: #BC0909;
+}
+
+/* Carrossel */
+
+.carrossel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 530px;
+}
+
+.img_carrossel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 1s ease-in-out;
+}
+
+.img_carrossel.ativado {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carrossel img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(40%);
+}
+
+
+/* Conteúdo */
+
+/* Seção de resumo sobre o clube */
+#secao_clube {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 900px;
+    border-bottom: solid 2px rgba(0, 0, 0, 0.118); 
+}
+
+#secao_clube .lateral {
+    height: 100%;
+    display: flex;
+    width: 60px;
+    margin-right: 110px;
+}
+
+#secao_clube .lateral .red {
+    background-color: #BC0909;
+    width: 20px;
+    height: 100%;
+}
+
+#secao_clube .lateral .white {
+    background-color: #FFFFFF;
+    width: 20px;
+    height: 100%;
+}
+
+#secao_clube .lateral .black {
+    background-color: #121212;
+    width: 20px;
+    height: 100%;
+}
+
+#secao_clube #txt_clube {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 100%;
+    margin-right: 100px;
+}
+
+#secao_clube #txt_clube #titulo_clube {
+    font-family: "Fira Sans";
+    font-size: 50px;
+    font-weight: 600;
+    color: #BC0909;
+    margin-top: 140px;
+}
+
+#secao_clube #txt_clube #subtitulo_clube {
+    font-family: "Fira Sans";
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 40px;
+}
+
+#secao_clube #txt_clube #txt {
+    font-family: "Open Sans";
+    font-size: 22px;
+    font-weight: 400;
+    width: 700px;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+#secao_clube #txt_clube button {
+    border-radius: 20px;
+    border: none;
+    background-color: #BC0909;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-size: 20px;
+    font-weight: 500;
+    width: 200px;
+    height: 60px;
+    align-self: center;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+#secao_clube #img_clube {
+    width: 450px;
+    height: 600px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px black;
+}
+
+/* Seção de resumo sobre o mim */
+
+#secao_sobreMim {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 900px;
+}
+
+#secao_sobreMim .lateral {
+    height: 100%;
+    display: flex;
+    width: 60px;
+    
+}
+
+#secao_sobreMim .lateral .red {
+    background-color: #BC0909;
+    width: 20px;
+    height: 100%;
+}
+
+#secao_sobreMim .lateral .white {
+    background-color: #FFFFFF;
+    width: 20px;
+    height: 100%;
+}
+
+#secao_sobreMim .lateral .black {
+    background-color: #121212;
+    width: 20px;
+    height: 100%;
+}
+
+#secao_sobreMim #txt_sobreMim {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 100%;
+    margin-right: 100px;
+    align-items: flex-end;
+}
+
+#secao_sobreMim #txt_sobreMim #titulo_clube {
+    font-family: "Fira Sans";
+    font-size: 50px;
+    font-weight: 600;
+    color: #BC0909;
+    margin-top: 140px;
+}
+
+#secao_sobreMim #txt_sobreMim #subtitulo_clube {
+    font-family: "Fira Sans";
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 40px;
+}
+
+#secao_sobreMim #txt_sobreMim #txt {
+    font-family: "Open Sans";
+    font-size: 22px;
+    font-weight: 400;
+    width: 700px;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+#secao_sobreMim #txt_sobreMim button {
+    border-radius: 20px;
+    border: none;
+    background-color: #121212;
+    color: #FFFFFF;
+    font-family: "Fira Sans";
+    font-size: 20px;
+    font-weight: 500;
+    width: 200px;
+    height: 60px;
+    align-self: center;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+#secao_sobreMim #imgs {
+    width: 450px;
+    height: 900px;
+    margin-left: 100px;
+    margin-right: 110px;
+}
+
+#secao_sobreMim #img_clube_01 {
+    width: 450px;
+    height: 350px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px black;
+    margin-bottom: 50px;
+    margin-top: 140px;  
+}
+
+#secao_sobreMim #img_clube_02 {
+    width: 450px;
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px black;
+}
+
+/* FOOTER */
+
+#footer {
+    background-color: #121212;
+    color: #787878;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-family: "Fira Sans";
+    font-weight: 600;
+}
