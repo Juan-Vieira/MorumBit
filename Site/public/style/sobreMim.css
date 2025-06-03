@@ -96,7 +96,7 @@ hr {
 /* Lateral */
 
 .lateral {
-    height: 5000px;
+    height: 4765px;
     display: flex;
     width: 60px;
     margin-right: 110px;
@@ -254,6 +254,27 @@ hr {
     align-self: flex-end;
 }
 
+/* Seção 'São Paulo Futebol Clube como parte da minha identidade' */
+
+#secao_04 {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+#secao_04 #txt_final{
+    width: 1100px;
+    height: 300px;
+    font-family: "Open Sans";
+    font-size: 22px;
+    font-weight: 500;
+    text-align: justify;
+    margin-bottom: 200px;
+}
 
 /* FOOTER */
 
