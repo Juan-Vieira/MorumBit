@@ -96,7 +96,7 @@ hr {
 /* Lateral */
 
 .lateral {
-    height: 2000px;
+    height: 5000px;
     display: flex;
     width: 60px;
     margin-right: 110px;
@@ -123,7 +123,7 @@ hr {
     height: 100%;
 }
 
-/* Seção "De indiferença ao amor pelo futebol" */
+/* Cards da página 'Sobre Mim' */
 
 .card_red {
     background-color: #BC0909;
@@ -156,9 +156,11 @@ hr {
     margin-bottom: 30px;
 }
 
+/* Seção "De indiferença ao amor pelo futebol" */
+
 #secao_01 {
     width: 80%;
-    height: 800px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     padding: 100px;
@@ -185,7 +187,51 @@ hr {
     width: 600px;
 }
 
+/* Seção 'Construindo um vínculo com o clube' */
 
+#secao_02 {
+    width: 85%;
+    height: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-evenly;
+    padding: 100px;
+}
+
+#secao_02 .card_red {
+    margin-left: 60px;
+}
+
+#secao_02 #card_red_01 {
+    align-self: flex-start;
+}
+
+#secao_02 #card_red_02 {
+    align-self: center;
+}
+
+#secao_02 .card_black {
+    margin-left: 180px;
+}
+
+#secao_02 #card_red_01 p {
+    font-size: 18px;
+    text-align: justify;
+    width: 600px;
+}
+
+#secao_02 #card_red_02 p {
+    font-size: 18px;
+    text-align: justify;
+    width: 600px;
+}
+
+#secao_02 .card_black p {
+    font-size: 18px;
+    text-align: justify;
+    width: 600px;
+}
 
 
 /* FOOTER */
