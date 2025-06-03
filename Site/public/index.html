@@ -130,14 +130,21 @@
 <script>
 
     // Carrossel de imagens
-    const imgs = document.querySelectorAll('.img_carrossel');
-    let atual = 0;
+    var imagens = document.querySelectorAll('.img_carrossel');
+    var indice = 0;
 
-    setInterval(() => {
-        imgs[atual].classList.remove('ativado');
-        atual = (atual + 1) % imgs.length;
-        imgs[atual].classList.add('ativado');
-    }, 5000);
+    function trocarImagem() {
+        imagens[indice].classList.remove('ativado');
+        indice++;
+
+        if (indice >= imagens.length) {
+            indice = 0;
+        }
+
+        imagens[indice].classList.add('ativado');
+    }
+
+    setInterval(trocarImagem, 5000);
 
     function exibirClube() {
         window.location.href = "clube.html"
