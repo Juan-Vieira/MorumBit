@@ -233,6 +233,27 @@ hr {
     width: 600px;
 }
 
+/* Seção 'Momentos marcantes com o tricolor' */
+
+#secao_03 {
+    width: 80%;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 100px;
+}
+
+#secao_03 .card_black p {
+    font-size: 18px;
+    text-align: justify;
+    width: 600px;
+}
+
+#secao_03 #card_black_02 {
+    align-self: flex-end;
+}
+
 
 /* FOOTER */
 
