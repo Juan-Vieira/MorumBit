@@ -151,7 +151,176 @@
     height: 650px;
 }
 
+/* Títulos e conquistas */
 
+#conquistas {
+    background-image: url(../assets/img/fundo_conquistas.png);
+    background-size: 1700px 800px;
+    width: 100%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+}
+
+#conquistas .titulo {
+    font-size: 50px;
+    font-family: 'Fira Sans';
+    font-weight: 600;
+    text-decoration: underline 1.5px;
+    text-underline-offset: 25px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+#conquistas #conteudo {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#conquistas #conteudo #tacas {
+    background-color: #ffffff3e;
+    width: 800px;
+    height: 90%;
+    border-radius: 20px;
+    border: solid 2px #FFFFFF;
+    backdrop-filter: blur(5px);
+}
+
+#conquistas #conteudo #filtragem {
+    background-color: #bc09094b;
+    width: 400px;
+    height: 90%;
+    border-radius: 20px;
+    border: solid 2px #FFFFFF;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#conquistas #conteudo #filtragem #titulo {
+    width: 150px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#conquistas #conteudo #filtragem #titulo img {
+    width: 40px;
+    height: 40px;
+}
+
+#conquistas #conteudo #filtragem #titulo p {
+    font-size: 30px;
+    font-family: 'Fira Sans';
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+#conquistas #conteudo #filtragem .btn_filtro {
+    background-color: #FFFFFF;
+    width: 300px;
+    height: 55px;
+    border-radius: 20px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#conquistas #conteudo #filtragem .btn_filtro:hover {
+    background-color: #BC0909;
+    color: #FFFFFF;
+    border: solid 2px #FFFFFF;
+}
+
+#conquistas #conteudo #tacas #paulistao {
+    display: flex;
+}
+
+#conquistas #conteudo #tacas #brasileirao {
+    display: none;
+}
+
+#conquistas #conteudo #tacas #copa_br {
+    display: none;
+}
+
+#conquistas #conteudo #tacas #sula {
+    display: none;
+}
+
+#conquistas #conteudo #tacas #liberta {
+    display: none;
+}
+
+#conquistas #conteudo #tacas #mundial {
+    display: none;
+}
+
+.trofeus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    overflow-y: auto;
+    max-height: 90%;
+    width: 93%;
+}
+
+.trofeu {
+    width: 150px;
+    height: auto;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.trofeu img {
+    width: 150px;
+    height: auto;
+}
+
+.trofeu p {
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.trofeus::-webkit-scrollbar {
+    background-color: #FFFFFF;
+    width: 10px;
+    
+    border-radius: 20px;
+    border: solid 2px #121212;
+}
+
+.trofeus::-webkit-scrollbar-thumb {
+    background: #BC0909;
+    border-radius: 20px;
+    border: solid 1px #121212;
+}
 
 /* FOOTER */
 
