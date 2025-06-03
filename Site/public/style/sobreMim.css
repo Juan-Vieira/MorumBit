@@ -93,12 +93,100 @@ hr {
     text-underline-offset: 25px;
 }
 
+/* Lateral */
+
+.lateral {
+    height: 2000px;
+    display: flex;
+    width: 60px;
+    margin-right: 110px;
+    position: absolute;
+    z-index: 2;
+    left: 0px;
+}
+
+.lateral .red {
+    background-color: #BC0909;
+    width: 20px;
+    height: 100%;
+}
+
+.lateral .white {
+    background-color: #FFFFFF;
+    width: 20px;
+    height: 100%;
+}
+
+.lateral .black {
+    background-color: #121212;
+    width: 20px;
+    height: 100%;
+}
+
 /* Seção "De indiferença ao amor pelo futebol" */
 
-#secao_01 {
-    width: 100%;
-    height: 800px;
+.card_red {
+    background-color: #BC0909;
+    width: 700px;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: "Open Sans";
 }
+
+.card_black {
+    background-color: #121212;
+    width: 700px;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: "Open Sans";
+}
+
+.titulo {
+    font-family: "Fira Sans";
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+#secao_01 {
+    width: 80%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+}
+
+#secao_01 .card_red {
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
+
+#secao_01 .card_black {
+    margin-left: 180px;
+}
+
+#secao_01 .card_red p {
+    font-size: 18px;
+    text-align: justify;
+    width: 600px;
+}
+
+#secao_01 .card_black p {
+    font-size: 18px;
+    text-align: justify;
+    width: 600px;
+}
+
+
+
 
 /* FOOTER */
 
