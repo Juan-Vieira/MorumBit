@@ -97,7 +97,7 @@
 #historia_clube #txt_historia {
     font-size: 25px;
     font-family: 'Open Sans';
-    font-weight: 400;
+    font-weight: 500;
     text-align: justify;
     width: 80%;
 }
@@ -128,18 +128,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 #identidade_visual #conteudo #barra_lateral {
     width: 20px;
     height: 420px;
     margin-right: 20px;
-    background: linear-gradient(to bottom, red 50%, white 50%);
+    background: linear-gradient(to bottom, #BC0909 50%, #FFFFFF 50%);
 }
 
 #identidade_visual #conteudo #txt_identidade_visual {
     width: 550px;
     font-size: 22px;
+    font-weight: 500;
     color: #FFFFFF;
     font-family: "Open Sans";
     text-align: justify;
@@ -147,8 +149,8 @@
 }
 
 #identidade_visual #conteudo img {
-    width: 550px;
-    height: 650px;
+    width: 500px;
+    height: 600px;
 }
 
 /* Títulos e conquistas */
@@ -311,7 +313,7 @@
 .trofeus::-webkit-scrollbar {
     background-color: #FFFFFF;
     width: 10px;
-    
+
     border-radius: 20px;
     border: solid 2px #121212;
 }
@@ -320,6 +322,35 @@
     background: #BC0909;
     border-radius: 20px;
     border: solid 1px #121212;
+}
+
+/* Torcida e Cultura Tricolor */
+
+#torcida {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#torcida .titulo {
+    font-size: 50px;
+    font-family: 'Fira Sans';
+    font-weight: 600;
+    text-decoration: underline 1.5px #121212;
+    text-underline-offset: 25px;
+    color: #BC0909;
+}
+
+#torcida #txt_torcida {
+    width: 1152px;
+    height: 300px;
+    font-family: 'Open Sans';
+    font-size: 22px;
+    text-align: justify;
+    font-weight: 500;
 }
 
 /* FOOTER */
