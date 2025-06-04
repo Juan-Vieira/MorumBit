@@ -219,11 +219,6 @@
                     dado_email.innerHTML = sessionStorage.EMAIL_USUARIO;
                     dado_senha.innerHTML = sessionStorage.SENHA_USUARIO;
 
-
-                } else {
-                    return resposta.text().then(texto => {
-                        throw new Error(texto);
-                    });
                 }
             })
                 .catch(err => {

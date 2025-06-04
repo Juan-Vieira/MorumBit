@@ -4,7 +4,7 @@ function questao(numeroQuest) {
 
     var instrucaoSql = `INSERT INTO questoes_quiz (numero) VALUES (?)`;
 
-    return database.executarComParametros(instrucaoSql, [numeroQuest]);
+    return database.executar(instrucaoSql, [numeroQuest]);
     
 }
 
@@ -14,7 +14,7 @@ function registrarResposta(fkTentativa, fkQuestao, acertoQuestao) {
         INSERT INTO respostas_quiz (fkTentativa, fkQuestao, acertos) VALUES (?, ?, ?)
     `;
 
-    return database.executarComParametros(instrucaoSql, [fkTentativa, fkQuestao, acertoQuestao]);
+    return database.executar(instrucaoSql, [fkTentativa, fkQuestao, acertoQuestao]);
 }
 
 module.exports = {
